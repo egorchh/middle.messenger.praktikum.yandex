@@ -1,0 +1,29 @@
+@import "normalize.css";
+@import "variables.scss";
+
+:root {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    background: url("public/images/bg-noise.jpeg") round;
+}
+
+body {
+    font: var(--font-m);
+    color: var(--primary-color);
+}
+
+.app {
+    background: var(--bg-redesigned);
+    min-height: 100vh;
+}
+
+.app_redesigned {
+    background: var(--bg-color);
+    min-height: 100vh;
+    font: var(--font-m-redesigned);
+    color: var(--text-redesigned);
+}
+
+.main {
+    display: flex;
+}
