@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Messenger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/index.scss">
+    <link rel="stylesheet" href="./index.scss">
+</head>
+<body>
+    <main class="messenger-page">
+        <!--    Сайдбар со списком друзей и поиском + линк на профиль    -->
+        <aside class="messenger-page_sidebar">
+            <!--      Поиск      -->
+            <div class="search">
+                <label class="search-container">
+                    <img class="search-icon" width="20px" height="20px" src="./assets/search-icon.svg" alt="Иконка: Лупа">
+                    <input class="search-input" placeholder="Поиск" type="text">
+                    <button class="search-button">
+                        <img class="search-icon search-icon__cross" src="./assets/cross-icon.svg" alt="Иконка: Крестик">
+                    </button>
+                </label>
+            </div>
+            <!--      Список друзей      -->
+            <div class="friends">
+                <ul class="friends-list">
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user online">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                    <li class="friends-item">
+                        <div class="friends-item_user">
+                            <img class="friends-item_user-image" width="50" height="50" src="./assets/friend.svg" alt="Изображение: Аватарка пользователя">
+                        </div>
+                        <div class="friends-item_text">
+                            <p class="friends-item_text-name">Аня Работа</p>
+                            <p class="friends-item_text-description">Ты сегодня не пришел на работу, болеешь?</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--      Всплывашка с профилем      -->
+            <div class="bottom-sheet">
+                <p class="bottom-sheet_nickname">egorchh</p>
+                <div class="bottom-sheet_functions">
+                    <button class="bottom-sheet_functions-button">
+                        <img class="bottom-sheet_functions-icon" width="20px" height="20px" src="./assets/plus.svg" alt="Иконка: Плюс">
+                    </button>
+                    <a href="../ProfilePage/profile-page.html">
+                        <img class="bottom-sheet_functions-icon" width="20px" height="20px" src="./assets/back-icon.svg" alt="Иконка: Правосторонняя стрелка">
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <!--    Окно чата + ввод сообщения    -->
+        <section class="messenger-page_chat">
+            <!--      Хедер чата      -->
+            <div class="chat-header">
+                <ul class="chat-header_users">
+                    <li class="chat-header_users-item">
+                        <img width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Аватарка участника чата">
+                    </li>
+                    <li class="chat-header_users-item">
+                        <img width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Аватарка участника чата">
+                    </li>
+                    <li class="chat-header_users-item">
+                        <img width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Аватарка участника чата">
+                    </li>
+                    <li class="chat-header_users-item">
+                        <img width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Аватарка участника чата">
+                    </li>
+                    <li class="chat-header_users-item">
+                        <img width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Аватарка участника чата">
+                    </li>
+                </ul>
+                <div class="chat-header_info">
+                    <div class="chat-header_info-text">
+                        <img class="chat-header_info-image" width="20px" height="20px" src="./assets/friend.svg" alt="Изображение: Фото чата">
+                        <p class="chat-header_info-title">Team Unicorns</p>
+                    </div>
+                    <p class="chat-header_info-description">45 минут назад</p>
+                </div>
+                <div class="chat-header_options">
+                    <button class="chat-header_options-button">
+                        <img class="chat-header_options-icon" width="20px" height="20px" src="./assets/kebab-icon.svg" alt="Иконка: Действия чата">
+                    </button>
+                </div>
+            </div>
+            <!--      Тело чата      -->
+            <div class="chat-body">
+                <ul class="messages">
+                    <li class="message">
+                        <img class="message_avatar" width="32px" height="32px" src="./assets/friend.svg" alt="Изображение: Аватар пользователя">
+                        <div class="message_bubble">
+                            <p class="message_bubble-username">
+                                Сплошная Аня
+                            </p>
+                            <p class="message_bubble-text">
+                                Привет, отец! Как дела вообще, давно не виделись!
+                            </p>
+                            <p class="message_bubble-time">10:22</p>
+                        </div>
+                    </li>
+                    <li class="message">
+                        <img class="message_avatar" width="32px" height="32px" src="./assets/friend.svg" alt="Изображение: Аватар пользователя">
+                        <div class="message_bubble">
+                            <p class="message_bubble-username">
+                                Аня Повсюду
+                            </p>
+                            <p class="message_bubble-text">
+                                Ооо, всем привет! Как оно вообще? Вот у меня вообще все хорошо, сижу верстаю сайт уже 3 день
+                            </p>
+                            <p class="message_bubble-time">10:24</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="messages1">
+                    <li class="message1">
+                        <img class="message1_avatar" width="32px" height="32px" src="./assets/friend.svg" alt="Изображение: Аватар пользователя">
+                        <div class="message1_bubble">
+                            <p class="message1_bubble-username">
+                                Аня Повсюду
+                            </p>
+                            <p class="message1_bubble-text">
+                                Ооо, всем привет! Как оно вообще? Вот у меня вообще все хорошо, сижу верстаю сайт уже 3 день
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--      Ввод сообщения      -->
+            <div class="chat-form">
+                <div class="chat-form_features">
+                    <button class="chat-form_features-button">
+                        <img class="chat-form_features-icon" width="20px" height="20px" src="./assets/emoji.svg" alt="Иконка: Эмоджи">
+                    </button>
+                    <button class="chat-form_features-button">
+                        <img class="chat-form_features-icon" width="24px" height="24px" src="./assets/paperclip.svg" alt="Иконка: Скрепка">
+                    </button>
+                </div>
+                <input class="chat-form_input" id="chat-input" placeholder="Введите сообщение..." type="text" />
+                <button class="chat-form_submit">
+                    <img class="chat-form_submit-icon" src="./assets/paper-airplane.svg" alt="Иконка: Самолетик">
+                </button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

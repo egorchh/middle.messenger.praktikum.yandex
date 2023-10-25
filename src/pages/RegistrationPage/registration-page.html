@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/index.scss">
+    <link rel="stylesheet" href="./index.scss">
+</head>
+<body>
+    <main class="registration-page">
+        <div class="registration-page_card">
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-email">Почта</label>
+                <input class="registration-page_input registration-page_input__error" id="registration-email" placeholder="Почта" type="email" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-login">Логин</label>
+                <input class="registration-page_input" id="registration-login" placeholder="Логин" type="text" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-name">Имя</label>
+                <input class="registration-page_input" id="registration-name" placeholder="Имя" type="text" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-surname">Фамилия</label>
+                <input class="registration-page_input" id="registration-surname" placeholder="Фамилия" type="text" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-phone">Номер телефона</label>
+                <input class="registration-page_input" id="registration-phone" placeholder="Номер телефона" type="tel" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-password">Пароль</label>
+                <input class="registration-page_input" id="registration-password" placeholder="Пароль" type="password" />
+            </div>
+            <div class="registration-page_input-container">
+                <label class="registration-page_input-label" for="registration-password-second">Пароль (повтор)</label>
+                <input class="registration-page_input" id="registration-password-second" placeholder="Пароль (повтор)" type="password" />
+            </div>
+            <button class="registration-page_button">
+                Создать аккаунт
+            </button>
+            <a class="registration-page_link" href="">Уже есть аккаунт?</a>
+        </div>
+    </main>
+</body>
+</html>

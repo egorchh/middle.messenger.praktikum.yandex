@@ -1,11 +1,20 @@
 :root {
     // цвета
-    --black-color: #1E1E1E;
-    --blue-color: #0086EA;
+    --black-color: #1e1e1e;
+    --blue-color: #0086ea;
     --primary-gray-color: #999999;
-    --secondary-gray-color: #F2F2F7;
-    --dark-gray-color: #8FA0AF;
-    --red-color: #F00;
-    --main-bg-color: #FFF;
-    --secondary-bg-color: #FBFBFB;
+    --secondary-gray-color: #f2f2f7;
+    --dark-gray-color: #adadad;
+    --light-gray-color: #c0c0c0ff;
+    --chat-input-bg: #efefef;
+    --red-color: #f00;
+    --main-bg-color: #fff;
+    --secondary-bg-color: #fbfbfb;
+    --green-color: #34c759;
+
+    // размеры
+    --sidebar-width: 315px;
+    --bottom-sheet-height: 48px;
+    --scrollbar-width: 10px;
+    --header-height: 68px;
 }

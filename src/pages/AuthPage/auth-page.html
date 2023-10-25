@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authorization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/index.scss">
+    <link rel="stylesheet" href="./index.scss">
+</head>
+<body>
+    <main class="auth-page">
+        <div class="auth-page_card">
+            <div class="auth-page_avatar"></div>
+            <div class="auth-page_input-container">
+                <label class="auth-page_input-label" for="login-auth">Логин</label>
+                <input class="auth-page_input" id="login-auth" placeholder="Логин" type="text" />
+            </div>
+            <div class="auth-page_input-container">
+                <label class="auth-page_input-label" for="login-password">Пароль</label>
+                <input class="auth-page_input auth-page_input__error" id="login-password" placeholder="Пароль" type="password" />
+            </div>
+            <button class="auth-page_button">
+                Войти
+            </button>
+            <a class="auth-page_link" href="">Нет аккаунта?</a>
+        </div>
+    </main>
+</body>
+</html>
