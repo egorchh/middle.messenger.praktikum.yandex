@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint:ts": "eslint **/*.ts",
     "lint:ts:fix": "eslint **/*.ts --fix",
-    "start": "npm run build && node server.js"
+    "start": "npm run build && ts-node-esm server.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.20",
