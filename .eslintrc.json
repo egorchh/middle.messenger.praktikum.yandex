@@ -17,6 +17,10 @@
         "tsconfigRootDir": "__dirname"
     },
     "root": true,
+    "env": {
+        "browser": true,
+        "node": true
+    },
     "rules": {
         "@typescript-eslint/no-unnecessary-condition": "error",
         "@typescript-eslint/quotes": ["error", "single"],

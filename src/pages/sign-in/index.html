@@ -1,0 +1,25 @@
+{{#page title="Авторизация" display="flex"}}
+    {{#card}}
+        <div class="auth-page_hello">
+            <img
+                    width="190px"
+                    height="63px"
+                    src="./assets/hello.png"
+                    alt="Изображение: 'Привет'"
+            />
+        </div>
+        <div class="auth-page_inputs">
+        {{#each signin/inputs}}
+            <div class="auth-page_input">
+                {{> input/input }}
+            </div>
+        {{/each}}
+        </div>
+        <div class="auth-page_button">
+            {{> button/button buttonText="Войти" }}
+        </div>
+        <div class="auth-page_link">
+            {{> link/link linkText="Нет аккаунта?" href="/src/pages/sign-up/index.html" }}
+        </div>
+    {{/card}}
+{{/page}}

@@ -1,0 +1,15 @@
+<div class="input-component">
+    {{#if label}}
+        <label class="input-component_label" for="{{ id }}">{{ label }}</label>
+    {{/if}}
+    <input
+            class="input-component_field {{#if error}}input-component_error{{/if}}"
+            value="{{ value }}"
+            id={{ id }}
+            placeholder="{{ placeholder }}"
+            type="{{ type }}"
+    />
+    {{#if error}}
+        <p class="input-component_error-text">{{ error }}</p>
+    {{/if}}
+</div>

@@ -1,0 +1,15 @@
+{{#page title="Регистрация" display="flex"}}
+    {{#card}}
+        {{#each signup/inputs}}
+            <div class="registration-page_input">
+                {{> input/input }}
+            </div>
+        {{/each}}
+        <div class="registration-page_button">
+            {{> button/button buttonText="Создать аккаунт" }}
+        </div>
+        <div class="registration-page_link">
+            {{> link/link linkText="Уже есть аккаунт?" href="/src/pages/sign-in/index.html" }}
+        </div>
+    {{/card}}
+{{/page}}

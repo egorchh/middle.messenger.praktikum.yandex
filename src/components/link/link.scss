@@ -1,0 +1,10 @@
+.link-component {
+    color: var(--blue-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

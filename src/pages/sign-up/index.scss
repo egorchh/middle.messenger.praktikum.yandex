@@ -1,0 +1,17 @@
+.registration-page {
+    &_inputs {
+        margin-top: 30px;
+    }
+
+    &_input:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    &_button {
+        margin-top: 30px;
+    }
+
+    &_link {
+        margin: 10px auto 0;
+    }
+}

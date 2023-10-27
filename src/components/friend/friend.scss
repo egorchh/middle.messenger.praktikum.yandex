@@ -1,0 +1,39 @@
+.friend-component {
+    display: flex;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+
+    &:hover {
+        &:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            right: -20px;
+            left: -20px;
+            background-color: var(--friend-hover);
+        }
+    }
+
+    &_info {
+        margin-left: 10px;
+        width: 100%;
+
+        &-name {
+            font-weight: 600;
+        }
+
+        &-description {
+            margin-top: 5px;
+            font-size: 14px;
+            color: var(--primary-gray-color);
+            max-width: 195px;
+            height: 28px;
+            -webkit-line-clamp: 2; /* Число отображаемых строк */
+            display: -webkit-box; /* Включаем флексбоксы */
+            -webkit-box-orient: vertical; /* Вертикальная ориентация */
+            overflow: hidden;
+        }
+    }
+}

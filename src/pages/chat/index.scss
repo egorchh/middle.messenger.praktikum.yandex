@@ -1,0 +1,161 @@
+.sidebar {
+    position: relative;
+    display: grid;
+    grid-template-rows: var(--header-height) calc(100vh - (var(--header-height) + var(--footer-height))) var(--footer-height);
+    background-color: var(--secondary-bg-color);
+
+    &_search {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--light-gray-color);
+    }
+
+    &_friends {
+        padding: 18px 20px;
+        overflow-y: auto;
+
+        &-person {
+            &:not(:first-child) {
+                margin-top: 18px;
+            }
+        }
+    }
+}
+
+.chat {
+    display: grid;
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+
+    &-header {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 150px 1fr 150px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background-color: var(--secondary-bg-color);
+        border-bottom: 1px solid var(--light-gray-color);
+
+        &_users {
+            color: var(--light-gray-color);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        &_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &-text {
+                display: flex;
+                align-items: center;
+            }
+
+            &-image {
+                margin-right: 5px;
+            }
+
+            &-title {
+                font-weight: 600;
+                margin-left: 10px;
+            }
+
+            &-description {
+                color: var(--primary-gray-color);
+                font-size: 12px;
+                margin-top: 5px;
+            }
+        }
+
+        &_options {
+            display: flex;
+            justify-content: flex-end;
+
+            &-button {
+                margin-top: 5px;
+                background: none;
+                cursor: pointer;
+            }
+
+            &-icon:hover {
+                filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+            }
+        }
+    }
+
+    &-body {
+        padding: 30px 30px 40px;
+        overflow-y: auto;
+        height: calc(100vh - var(--footer-height) - var(--header-height));
+
+        &_messages {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &_message:not(:first-child) {
+            margin-top: 40px;
+        }
+    }
+
+    &-form {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: var(--sidebar-width);
+        justify-content: space-between;
+        max-height: 48px;
+        padding: 8px 27px;
+        background-color: var(--secondary-bg-color);
+        border-top: 1px solid var(--light-gray-color);
+
+        &_features {
+            display: flex;
+            align-items: center;
+            padding: 5px 16px 5px 0;
+
+            &-button {
+                background: none;
+            }
+
+            &-icon {
+                margin-top: 4px;
+                cursor: pointer;
+
+                &:first-child {
+                    margin-right: 14px;
+                }
+
+                &:hover {
+                    filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+                }
+            }
+        }
+
+        &_input {
+            width: 100%;
+            height: 32px;
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin: auto 0;
+            background-color: var(--chat-input-bg);
+            font-family: inherit;
+        }
+
+        &_submit {
+            background: none;
+            padding-left: 20px;
+
+            &-icon {
+                cursor: pointer;
+                filter: invert(64%) sepia(0%) saturate(3877%) hue-rotate(106deg) brightness(85%) contrast(87%);
+
+                &:hover {
+                    filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+                }
+            }
+        }
+    }
+}

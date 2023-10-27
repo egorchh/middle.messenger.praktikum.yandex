@@ -1,0 +1,34 @@
+.avatar-component {
+    &_image {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &_stub {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 10px;
+        min-height: 10px;
+        background-color: var(--secondary-gray-color);
+        border-radius: 50%;
+        transition: .3s;
+        outline: 2px dashed var(--light-gray-color);
+        cursor: pointer;
+
+        &:hover {
+            outline: 2px dashed var(--blue-color);
+
+            .avatar-component_stub-icon {
+                transition: .3s;
+                filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+            }
+        }
+
+        &-icon {
+            width: 30px;
+            height: 26px;
+            filter: invert(61%) sepia(0%) saturate(681%) hue-rotate(167deg) brightness(99%) contrast(93%);
+        }
+    }
+}

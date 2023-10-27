@@ -1,0 +1,29 @@
+{{#page title="Профиль" display="flex"}}
+    <div class="profile-page_container">
+        {{> avatar/avatar
+            stub=true
+            stubSize=30
+            stubSrc="./assets/photo-plug.svg"
+            size=100
+        }}
+        <p class="profile-page_container-username">Егор</p>
+        <ul class="profile-page_inputs">
+            {{#each profile/inputs}}
+                <li class="profile-page_input">
+                    {{> light-input/light-input }}
+                </li>
+            {{/each}}
+        </ul>
+        <ul class="profile-page_buttons">
+            {{#each profile/buttons}}
+                <li class="profile-page_button">
+                    {{> light-button/light-button }}
+                </li>
+            {{/each}}
+        </ul>
+        <a class="profile-page_back" href="/src/pages/chat/index.html">
+            <img class="profile-page_back-icon" src="./assets/back-icon.svg" alt="Иконка: Стрелочка назад" />
+            <p class="profile-page_back-text">назад</p>
+        </a>
+    </div>
+{{/page}}
