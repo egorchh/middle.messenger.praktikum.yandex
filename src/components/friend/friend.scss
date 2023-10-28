@@ -36,4 +36,24 @@
             overflow: hidden;
         }
     }
+
+    &_unread-message {
+        align-self: center;
+        width: 18px;
+        height: 18px;
+        background-color: var(--blue-color);
+        border-radius: 50%;
+        margin-left: 5px;
+
+        &-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
 }

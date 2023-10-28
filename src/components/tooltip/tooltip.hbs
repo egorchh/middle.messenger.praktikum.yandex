@@ -1,0 +1,25 @@
+<div
+    class="tooltip-component {{#if position }}{{ position }}{{else}}top-right{{/if}}"
+    style="
+        top: {{styles/top}};
+        left: {{styles/left}};
+        right: {{styles/right}};
+        bottom: {{styles/bottom}};
+        min-width: {{styles/width}}
+    "
+>
+    <ul class="tooltip-component_list">
+        {{#each tooltipItems}}
+            <li class="tooltip-component_item {{#if red}}red{{/if}}">
+                <button class="tooltip-component_item-button">
+                    {{#if src}}
+                        <img class="tooltip-component_item-icon" src="{{ src }}" alt="Иконка: Элемент выпадающего списка" >
+                    {{/if}}
+                    <p class="tooltip-component_item-text">
+                        {{ text }}
+                    </p>
+                </button>
+            </li>
+        {{/each}}
+    </ul>
+</div>
