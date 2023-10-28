@@ -9,9 +9,12 @@
 @import "../pages/sign-up";
 @import "../pages/profile";
 @import "../pages/chat";
+@import "../pages/tooltips";
+@import "../pages/popups";
 
 // layouts
 @import "../layouts/card/card.scss";
+@import "../layouts/popup/popup.scss";
 
 // partials
 @import "../components/input/input.scss";
@@ -25,6 +28,7 @@
 @import "../components/friend/friend.scss";
 @import "../components/sheet/sheet.scss";
 @import "../components/message/message.scss";
+@import "../components/tooltip/tooltip.scss";
 
 :root {
     height: 100vh;

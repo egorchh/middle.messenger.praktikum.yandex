@@ -4,6 +4,7 @@ import handlebars from 'vite-plugin-handlebars';
 import eslint from 'vite-plugin-eslint';
 import card from "./src/layouts/card/card";
 import page from "./src/layouts/page/page";
+import popup from "./src/layouts/popup/popup";
 import context from "./src/__fixtures__/contextMock";
 
 export default defineConfig({
@@ -11,7 +12,6 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
-      // TODO: добавить страницу для попапов
       input: {
         index: resolve(__dirname, "index.html"),
         400: resolve(__dirname, "src/pages/errors/400/index.html"),
@@ -20,6 +20,8 @@ export default defineConfig({
         registration: resolve(__dirname, "src/pages/sign-up/index.html"),
         profile: resolve(__dirname, "src/pages/profile/index.html"),
         chat: resolve(__dirname, "src/pages/chat/index.html"),
+        tooltips: resolve(__dirname, "src/pages/tooltips/index.html"),
+        popups: resolve(__dirname, "src/pages/popups/index.html"),
       },
     },
   },
@@ -29,7 +31,8 @@ export default defineConfig({
       partialDirectory: resolve(__dirname, 'src/components'),
       helpers: {
         card,
-        page
+        page,
+        popup
       },
       context
     }) as PluginOption

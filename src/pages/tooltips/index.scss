@@ -1,0 +1,17 @@
+.tooltips-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 40px;
+
+    &_anchor {
+        height: 100px;
+        width: 100px;
+        background-color: var(--friend-hover);
+        border-radius: 10px;
+        border: 1px solid var(--blue-color);
+        position: absolute;
+    }
+}
