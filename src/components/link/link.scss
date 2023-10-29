@@ -7,4 +7,44 @@
     &:hover {
         text-decoration: underline;
     }
+
+    &_back {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        text-decoration: none;
+        color: var(--primary-gray-color);
+        filter: invert(61%) sepia(0%) saturate(681%) hue-rotate(167deg) brightness(99%) contrast(93%);
+
+        &:hover {
+            filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+            color: var(--blue-color);
+        }
+
+        &-icon {
+            width: 20px;
+        }
+
+        &-text {
+            margin-bottom: 1px;
+        }
+    }
+}
+
+.link-exit {
+    color: var(--red-color);
+}
+
+.link-primary {
+    color: var(--blue-color);
+}
+
+.link-l {
+    font-size: 16px;
+}
+
+.link-xl {
+    font-size: 18px;
 }

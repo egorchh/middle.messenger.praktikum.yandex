@@ -22,6 +22,8 @@ export default defineConfig({
         chat: resolve(__dirname, "src/pages/chat/index.html"),
         tooltips: resolve(__dirname, "src/pages/tooltips/index.html"),
         popups: resolve(__dirname, "src/pages/popups/index.html"),
+        'change-password': resolve(__dirname, "src/pages/change-password/index.html"),
+        'change-data': resolve(__dirname, "src/pages/change-data/index.html"),
       },
     },
   },
