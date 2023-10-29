@@ -11,6 +11,7 @@
 @import "../pages/chat";
 @import "../pages/tooltips";
 @import "../pages/popups";
+@import "../pages/change-data";
 
 // layouts
 @import "../layouts/card/card.scss";
@@ -36,4 +37,16 @@
     color: var(--black-color);
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
+}
+
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+.input-component__disable {
+    color: var(--primary-gray-color);
 }
