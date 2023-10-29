@@ -1,0 +1,20 @@
+{{#page title="Смена данных" display="flex"}}
+    <div class="change-data-page_container">
+        <h1>Смена данных профиля</h1>
+        <form class="change-data-page_form" method="POST">
+            <fieldset>
+                <ul class="change-data-page_inputs">
+                    {{#each change-data/inputs}}
+                        <li class="change-data-page_input">
+                            {{> light-input/light-input }}
+                        </li>
+                    {{/each}}
+                </ul>
+            </fieldset>
+            <div class="change-data-page_button">
+                {{> button/button buttonText="Сохранить изменения" type="submit" }}
+            </div>
+        </form>
+        {{> link/link back=true href="/src/pages/profile/index.html"}}
+    </div>
+{{/page}}

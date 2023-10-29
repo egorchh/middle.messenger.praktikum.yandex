@@ -9,6 +9,8 @@
 - [Ошибка 500](https://lucent-sunflower-8af641.netlify.app/src/pages/errors/500/index.html)
 - [Чат](https://lucent-sunflower-8af641.netlify.app/src/pages/chat/index.html)
 - [Профиль](https://lucent-sunflower-8af641.netlify.app/src/pages/profile/index.html)
+- [Смена пароля](https://lucent-sunflower-8af641.netlify.app/src/pages/change-password/index.html)
+- [Смена данных о пользователе](https://lucent-sunflower-8af641.netlify.app/src/pages/change-data/index.html)
 
 ### Временные страницы с шаблонами:
 

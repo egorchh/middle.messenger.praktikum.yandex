@@ -2,34 +2,51 @@
 const context = {
     signup: {
         inputs: [
-            { id: 'signup-email', placeholder: 'Почта', type: 'email', value: 'test@test.ru', label: 'Почта', error: undefined },
-            { id: 'signup-login', placeholder: 'Логин', type: 'text', value: undefined, label: undefined, error: undefined },
-            { id: 'signup-name', placeholder: 'Имя', type: 'text', value: undefined, label: undefined, error: 'Какая-то ошибка' },
-            { id: 'signup-lastname', placeholder: 'Фамилия', type: 'text', value: undefined, label: undefined, error: undefined },
-            { id: 'signup-tel', placeholder: 'Номер телефона', type: 'tel', value: undefined, label: undefined, error: undefined },
-            { id: 'signup-password', placeholder: 'Пароль', type: 'password', value: undefined, label: undefined, error: 'А тут бы ввести пароль' },
-            { id: 'signup-password-repeat', placeholder: 'Пароль (еще раз)', type: 'password', value: undefined, label: undefined, error: undefined }
+            { id: 'signup-email', placeholder: 'Почта', type: 'email', value: 'test@test.ru', label: 'Почта', error: undefined, name: 'email' },
+            { id: 'signup-login', placeholder: 'Логин', type: 'text', value: undefined, label: undefined, error: undefined, name: 'login' },
+            { id: 'signup-name', placeholder: 'Имя', type: 'text', value: undefined, label: undefined, error: 'Какая-то ошибка', name: 'first_name' },
+            { id: 'signup-lastname', placeholder: 'Фамилия', type: 'text', value: undefined, label: undefined, error: undefined, name: 'second_name' },
+            { id: 'signup-tel', placeholder: 'Номер телефона', type: 'tel', value: undefined, label: undefined, error: undefined, name: 'phone' },
+            { id: 'signup-password', placeholder: 'Пароль', type: 'password', value: undefined, label: undefined, error: 'А тут бы ввести пароль', name: 'password' },
+            { id: 'signup-password-repeat', placeholder: 'Пароль (еще раз)', type: 'password', value: undefined, label: undefined, error: undefined, name: 'password' }
         ]
     },
     signin: {
         inputs: [
-            { id: 'signin-login', placeholder: 'Логин', type: 'text', value: 'egorchh', label: 'Логин', error: 'Пользователя с таким логином не существует' },
-            { id: 'signin-password', placeholder: 'Пароль', type: 'password', value: undefined, label: undefined, error: undefined }
+            { id: 'signin-login', placeholder: 'Логин', type: 'text', value: 'egorchh', label: 'Логин', error: 'Пользователя с таким логином не существует', name: 'login' },
+            { id: 'signin-password', placeholder: 'Пароль', type: 'password', value: undefined, label: undefined, error: undefined, name: 'password' }
         ]
-    },
+    }, name: '',
     profile: {
         inputs: [
-            { id: 'profile-email', type: 'email', value: 'pochta@yandex.ru', label: 'Почта' },
-            { id: 'profile-login', type: 'text', value: 'egorchh', label: 'Логин' },
-            { id: 'profile-name', type: 'text', value: 'Егор', label: 'Имя' },
-            { id: 'profile-lastname', type: 'text', value: 'Подольский', label: 'Фамилия' },
-            { id: 'profile-nickname', type: 'text', value: 'egorchh', label: 'Имя в чате' },
-            { id: 'profile-tel', type: 'tel', value: '+7 (999) 999 99 99', label: 'Телефон' }
+            { id: 'profile-email', type: 'email', value: 'pochta@yandex.ru', label: 'Почта', name: 'email', disable: true },
+            { id: 'profile-login', type: 'text', value: 'egorchh', label: 'Логин', name: 'login', disable: true },
+            { id: 'profile-name', type: 'text', value: 'Егор', label: 'Имя', name: 'first_name', disable: true },
+            { id: 'profile-lastname', type: 'text', value: 'Подольский', label: 'Фамилия', name: 'second_name', disable: true },
+            { id: 'profile-nickname', type: 'text', value: 'egorchh', label: 'Имя в чате', name: 'display_name', disable: true },
+            { id: 'profile-tel', type: 'tel', value: '+7 (999) 999 99 99', label: 'Телефон', name: 'phone', disable: true }
         ],
-            buttons: [
-            { text: 'Изменить данные', variant: 'primary' },
-            { text: 'Изменить пароль', variant: 'primary' },
-            { text: 'Выйти', variant: 'exit' }
+            links: [
+            { linkText: 'Изменить данные', variant: 'primary', size: 'l', href: '/src/pages/change-data/index.html' },
+            { linkText: 'Изменить пароль', variant: 'primary', size: 'l', href: '/src/pages/change-password/index.html' },
+            { linkText: 'Выйти', variant: 'exit', size: 'l', href: '/src/pages/chat/index.html' }
+        ]
+    },
+    'change-data': {
+        inputs: [
+            { id: 'change-email', type: 'email', value: 'pochta@yandex.ru', label: 'Почта', name: 'email', disable: false },
+            { id: 'change-login', type: 'text', value: 'egorchh', label: 'Логин', name: 'login', disable: false },
+            { id: 'change-name', type: 'text', value: 'Егор', label: 'Имя', name: 'first_name', disable: false },
+            { id: 'change-lastname', type: 'text', value: 'Подольский', label: 'Фамилия', name: 'second_name', disable: false },
+            { id: 'change-nickname', type: 'text', value: 'egorchh', label: 'Имя в чате', name: 'display_name', disable: false },
+            { id: 'change-tel', type: 'tel', value: '+7 (999) 999 99 99', label: 'Телефон', name: 'phone', disable: false }
+        ]
+    },
+    'change-password': {
+        inputs: [
+            { id: 'old-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Старый пароль', name: 'oldPassword', disable: false },
+            { id: 'new-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль', name: 'newPassword', disable: false },
+            { id: 'new-password-repeat', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль (еще раз)', name: 'newPassword', disable: false }
         ]
     },
     chat: {
