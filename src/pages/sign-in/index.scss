@@ -1,0 +1,24 @@
+.auth-page {
+    &_hello {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    &_fieldset {
+        margin-top: 30px;
+    }
+
+    &_input:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    &_button {
+        margin-top: 30px;
+    }
+
+    &_link {
+        margin: 10px auto 0;
+    }
+}

@@ -1,0 +1,32 @@
+// TODO: сделать названия констант более осознанными
+
+:root {
+    // цвета
+    --black-color: #1e1e1e;
+    --blue-color: #0086ea;
+    --light-blue-color: #2ea6ff;
+    --primary-gray-color: #999999;
+    --secondary-gray-color: #f2f2f7;
+    --dark-gray-color: #adadad;
+    --light-gray-color: #c0c0c0ff;
+    --chat-input-bg: #efefef;
+    --red-color: #f00;
+    --red-background-color: rgba(250, 148, 148, 0.1);
+    --main-bg-color: #fff;
+    --secondary-bg-color: #fbfbfb;
+    --green-color: #34c759;
+    --friend-hover: rgba(51, 166, 255, 0.07);
+    --messages-color: #519ae0;
+    --overlay-color: rgba(30, 30, 30, 0.6);
+
+    // размеры
+    --sidebar-width: 315px;
+    --scrollbar-width: 10px;
+    --header-height: 68px;
+    --footer-height: 48px;
+
+    // z-index
+    --tooltip-zindex: 10;
+    --overlay-zindex: 100;
+    --popup-zindex: 1000;
+}

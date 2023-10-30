@@ -1,0 +1,16 @@
+<div class="profile-input-component">
+    {{#if label}}
+        <label class="profile-input-component_label" for="{{ id }}">{{ label }}</label>
+    {{/if}}
+    <input
+            class="profile-input-component_field {{#if error}}profile-input-component_error{{/if}} {{#if disable}}input-component__disable{{/if}}"
+            value="{{ value }}"
+            id={{ id }}
+            placeholder="{{ placeholder }}"
+            type="{{ type }}"
+            name="{{ name }}"
+    />
+    {{#if error}}
+        <p class="profile-input-component_error-text">{{ error }}</p>
+    {{/if}}
+</div>

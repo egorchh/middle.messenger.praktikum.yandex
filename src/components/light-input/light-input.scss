@@ -1,0 +1,26 @@
+.profile-input-component {
+    display: flex;
+    align-items: center;
+
+    &_field {
+        width: 100%;
+        background: none;
+        padding: 10px 0 10px 10px;
+        font-family: inherit;
+        font-size: 16px;
+        text-align: end;
+
+        &::placeholder {
+            color: var(--primary-gray-color);
+        }
+    }
+
+    &_label {
+        width: 400px;
+        max-width: 300px;
+        margin-right: 10px;
+        font-weight: 600;
+    }
+
+    // TODO: Подумать над реализацией ошибки в будущих спринтах
+}

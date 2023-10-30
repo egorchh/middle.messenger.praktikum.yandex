@@ -1,0 +1,28 @@
+{{#page title="Авторизация" display="flex"}}
+    {{#card}}
+        <div class="auth-page_hello">
+            <img
+                    width="190px"
+                    height="63px"
+                    src="./assets/hello.png"
+                    alt="Изображение: 'Привет'"
+            />
+        </div>
+        <form method="POST">
+            <fieldset class="auth-page_fieldset">
+                <legend class="visually-hidden">Форма авторизации</legend>
+                {{#each signin/inputs}}
+                    <div class="auth-page_input">
+                        {{> input/input }}
+                    </div>
+                {{/each}}
+            </fieldset>
+            <div class="auth-page_button">
+                {{> button/button buttonText="Войти" type="submit" }}
+            </div>
+        </form>
+        <div class="auth-page_link">
+            {{> link/link linkText="Нет аккаунта?" href="/src/pages/sign-up/index.html" }}
+        </div>
+    {{/card}}
+{{/page}}

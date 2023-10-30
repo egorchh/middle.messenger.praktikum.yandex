@@ -1,0 +1,52 @@
+//// styles
+
+// common
+@import "reset.scss";
+@import "variables.scss";
+
+// pages
+@import "../pages/sign-in";
+@import "../pages/sign-up";
+@import "../pages/profile";
+@import "../pages/chat";
+@import "../pages/tooltips";
+@import "../pages/popups";
+@import "../pages/change-data";
+
+// layouts
+@import "../layouts/card/card.scss";
+@import "../layouts/popup/popup.scss";
+
+// partials
+@import "../components/input/input.scss";
+@import "../components/light-input/light-input.scss";
+@import "../components/button/button.scss";
+@import "../components/light-button/light-button.scss";
+@import "../components/avatar/avatar.scss";
+@import "../components/link/link.scss";
+@import "../components/error-template/error-template.scss";
+@import "../components/search/search.scss";
+@import "../components/friend/friend.scss";
+@import "../components/sheet/sheet.scss";
+@import "../components/message/message.scss";
+@import "../components/tooltip/tooltip.scss";
+
+:root {
+    height: 100vh;
+    background: url("../assets/images/bg-noise.jpeg") round;
+    color: var(--black-color);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+}
+
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+.input-component__disable {
+    color: var(--primary-gray-color);
+}

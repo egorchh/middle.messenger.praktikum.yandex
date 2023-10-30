@@ -1,0 +1,15 @@
+.error-template-component {
+    &_title {
+        font-size: 140px;
+    }
+
+    &_description {
+        max-width: 320px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    &_link {
+        margin-top: 20px;
+    }
+}

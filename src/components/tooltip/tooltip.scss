@@ -1,0 +1,92 @@
+.tooltip-component {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 25px 35px 25px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+    background: var(--main-bg-color);
+    z-index: var(--tooltip-zindex);
+
+    &_item {
+        position: relative;
+        cursor: pointer;
+        pointer-events: auto;
+
+        &:hover {
+            &:before {
+                content: '';
+                position: absolute;
+                top: -5px;
+                bottom: -5px;
+                right: -35px;
+                left: -25px;
+                background-color: var(--friend-hover);
+            }
+
+            .tooltip-component_item-icon {
+                filter: invert(53%) sepia(94%) saturate(5711%) hue-rotate(188deg) brightness(100%) contrast(102%);
+            }
+
+            .tooltip-component_item-text {
+                color: var(--blue-color);
+            }
+        }
+
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
+
+        &-button {
+            display: flex;
+            align-items: center;
+            background: none;
+            cursor: pointer;
+        }
+
+        &-icon {
+            margin-right: 10px;
+            filter: invert(61%) sepia(0%) saturate(681%) hue-rotate(167deg) brightness(99%) contrast(93%);
+        }
+    }
+}
+
+.red {
+    &:hover {
+        &:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            right: -35px;
+            left: -25px;
+            background-color: var(--red-background-color);
+        }
+
+        .tooltip-component_item-icon {
+            filter: invert(32%) sepia(65%) saturate(4924%) hue-rotate(346deg) brightness(85%) contrast(147%);
+        }
+
+        .tooltip-component_item-text {
+            color: var(--red-color);
+        }
+    }
+}
+
+// Позиция расположения тултипа
+
+.top-right {
+    border-bottom-left-radius: 3px;
+}
+
+.top-left {
+    border-bottom-right-radius: 3px;
+}
+
+.bottom-right {
+    border-top-left-radius: 3px;
+}
+
+.bottom-left {
+    border-top-right-radius: 3px;
+}
