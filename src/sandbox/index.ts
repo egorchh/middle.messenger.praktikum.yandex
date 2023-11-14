@@ -1,5 +1,5 @@
 import ButtonSandbox from './components/button-sandbox/Button.js';
-import renderDOM from '../utils/render';
+import { renderComponent } from '../utils/render';
 import NavSandbox from './components/nav-sandbox/Nav.js';
 import LinkSandbox from './components/link-sandbox/Link.js';
 import PageSandbox from './components/page-sandbox/Page.js';
@@ -28,7 +28,6 @@ const nav = new NavSandbox(
         ],
         events: {
             click: e => {
-                console.log('Nav link clicked');
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -46,9 +45,6 @@ const content = new PageSandbox(
         text: 'Некий текст содержимого страницы'
     }
 )
-
-console.log(nav.getContent())
-console.log(content.getContent())
 
 const page = new LayoutSandbox(
     'div',
@@ -76,4 +72,4 @@ window.changePageContent = () => {
     page.setProps({ content: newContent })
 }
 
-renderDOM('app', page);
+renderComponent('app', page);

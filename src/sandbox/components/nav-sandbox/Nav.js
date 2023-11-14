@@ -1,9 +1,8 @@
-import Component from '../../../utils/component.ts';
+import Component from '../../../core/component.ts';
 import { template } from './index.js';
 
 export default class NavSandbox extends Component {
     render() {
-        console.log('Nav render')
         return this.compile('{{{ items }}}');
     }
 

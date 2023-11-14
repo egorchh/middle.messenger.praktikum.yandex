@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './event-bus'
-import { isDeepEqual } from './mydash/isDeepEqual';
+import { isDeepEqual } from '../utils/mydash';
 
 export type Children = Record<string, Component>;
 export type List = Record<string, Children[]>;
@@ -10,7 +10,7 @@ export type DOMEvents = Record<string, (event?: Event) => void>;
 export interface Props {
     events?: DOMEvents;
     children?: Children,
-    attributes?: Record<string, string | number>
+    attributes?: Record<string, string | number | boolean>
     classNames?: Array<string | Record<string, boolean>>,
     settings?: {
         withInternalID: boolean;
@@ -36,7 +36,7 @@ export default class Component {
     private _eventBus: EventBus;
     private _setUpdate: boolean;
 
-    constructor(tagName: keyof HTMLElementTagNameMap | null = 'div', propsAndChildren = {}) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null = 'div', propsAndChildren: Props = {}) {
         const { children, props, lists } = this._getChildrenAndProps(propsAndChildren);
 
         this._eventBus = new EventBus();
@@ -115,6 +115,7 @@ export default class Component {
     }
 
     private _componentDidUpdate(oldProps: Props, newProps: Props) {
+        console.log(newProps);
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
             return;
@@ -173,7 +174,7 @@ export default class Component {
         this._addClasses();
     }
 
-    protected render(): string {
+    protected render(): string | DocumentFragment {
         return '';
     }
 
@@ -279,7 +280,8 @@ export default class Component {
 
         Object.values(this._children).forEach(child => {
             const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-            if(stub) {
+
+            if (stub) {
                 stub.replaceWith(child.getContent() as string | Node);
             }
         });

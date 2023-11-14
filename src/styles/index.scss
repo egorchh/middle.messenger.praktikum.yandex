@@ -31,6 +31,8 @@
 @import "../components/message/message.scss";
 @import "../components/tooltip/tooltip.scss";
 
+// Корневые стили
+
 :root {
     height: 100vh;
     background: url("../assets/images/bg-noise.jpeg") round;
@@ -38,6 +40,39 @@
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 }
+
+// Стили страницы
+
+.page-flex, .page-grid {
+    height: 100vh;
+}
+
+.page-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    overflow: hidden;
+}
+
+// Стили карточки
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 340px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+    background: var(--main-bg-color);
+}
+
+// Другие стили
 
 .visually-hidden {
     position: absolute;
