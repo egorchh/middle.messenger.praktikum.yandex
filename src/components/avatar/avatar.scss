@@ -2,6 +2,12 @@
     &_image {
         border-radius: 50%;
         object-fit: cover;
+        cursor: pointer;
+        outline: 3px solid var(--light-gray-color);
+
+        &:hover {
+            outline: 3px solid var(--blue-color);
+        }
     }
 
     &_stub {

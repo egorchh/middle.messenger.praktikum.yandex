@@ -1,8 +1,9 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { InputFieldComponent } from '../input-field';
+import { validateTargetValue } from '../../utils/validation';
 
-type InputComponentProps = {
+export type InputComponentProps = {
     id: string;
     placeholder: string;
     type: HTMLInputElement['type'];
@@ -10,31 +11,66 @@ type InputComponentProps = {
     value?: string;
     error?: string;
     disable?: boolean;
-    onBlur?: (event?: Event) => void;
-    onChange?: (event?: Event) => void;
-}  & Props;
-
-
+    variant?: 'normal' | 'profile'
+    onBlur?: (event: Event) => void;
+    inputField?: InputFieldComponent;
+} & Props;
 
 export class InputComponent extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: InputComponentProps) {
-        tagName = 'div';
 
-        props = {
+        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : [];
+
+        const { error, name, placeholder, type, id, variant, value } = props;
+
+        const classVariant = variant === 'profile' ? 'profile-' : '';
+
+        super(tagName, {
             ...props,
-            inputField: new InputFieldComponent(tagName, {
-                ...props
+            classNames: classNamesFromProps.concat([ `${classVariant}input-component` ]),
+            error,
+            inputField: new InputFieldComponent('input', {
+                attributes: {
+                    type,
+                    id,
+                    placeholder,
+                    name,
+                    value: value || ''
+                },
+                variant: classVariant,
+                onBlur: (event: Event | undefined) => {
+                    if (!event) return;
+
+                    const target = event.target as HTMLInputElement;
+
+                    const { value: targetValue, name: targetName } = target;
+
+                    const validatedValue = validateTargetValue(targetName, targetValue);
+
+                    if (validatedValue) {
+                        this.setProps({
+                            ...props,
+                            error: validatedValue,
+                            value: targetValue
+
+                        });
+
+                        target.classList.add(`${classVariant}input-component_error`);
+                    } else {
+                        this.setProps({
+                            ...props,
+                            error: undefined,
+                            value: targetValue
+                        });
+
+                        target.classList.remove('input-component_error');
+                    }
+                }
             })
-        }
-
-        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : []
-
-        props.classNames = classNamesFromProps.concat([ 'input-component' ]);
-
-        super(tagName, props);
+        });
     }
 
     render() {
-        return this.compile(template);
+        return this.compile(template, this._props);
     }
 }

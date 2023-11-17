@@ -1,10 +1,15 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
 
-type ButtonComponentProps = {
-    type: HTMLButtonElement['type'];
-    text: string;
+export type ButtonComponentProps = {
+    type?: HTMLButtonElement['type'];
+    text?: string;
     disabled?: boolean;
+    iconButton?: boolean;
+    imageClass?: string;
+    iconSize?: number;
+    src?: string;
+    alt?: string;
     onClick?: (event?: Event) => void;
 } & Props;
 
@@ -13,7 +18,7 @@ export class ButtonComponent extends Component {
         super(tagName, {
             ...props,
             events: {
-                click: props.onClick || (() => { })
+                click: props.onClick || (() => {})
             }
         });
     }

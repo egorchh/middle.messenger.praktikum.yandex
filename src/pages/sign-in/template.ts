@@ -16,6 +16,8 @@ export const template = `
             </fieldset>
             {{{ button }}}
         </form>
-        {{{ link }}}
+        <div class="auth-page_link">
+            {{{ link }}}
+        </div>
     </div>
 `;

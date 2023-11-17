@@ -23,7 +23,6 @@ export default class Component {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
         FLOW_CDU: 'flow:component-did-update',
-        FLOW_CWU: 'flow:component-will-unmount',
         FLOW_RENDER: 'flow:render'
     };
 
@@ -68,10 +67,8 @@ export default class Component {
     private _createResources() {
         const { tagName } = this._meta;
 
-        // TODO: сейчас если tagName === null, то при повторном изменении пропсов контент не отрисовывается
         if (tagName === null) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            //@ts-ignore
+			//@ts-ignore
             this._element = this._createDocumentElement('template').content;
         } else {
             this._element = this._createDocumentElement(tagName);
@@ -115,7 +112,6 @@ export default class Component {
     }
 
     private _componentDidUpdate(oldProps: Props, newProps: Props) {
-        console.log(newProps);
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
             return;

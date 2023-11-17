@@ -4,13 +4,26 @@ import renderDOM from '../utils/render';
 
 type PageType = {
     name: string;
-    page: typeof Pages.Error500Page | typeof Pages.Error400Page | typeof Pages.SignInPage;
+    page:
+        typeof Pages.Error500Page |
+        typeof Pages.Error400Page |
+        typeof Pages.SignInPage |
+        typeof Pages.SignUpPage |
+        typeof Pages.ProfilePage |
+        typeof Pages.ChangePasswordPage |
+        typeof Pages.ChangeDataPage |
+        typeof Pages.ChatPage;
 }
 
 const pages: PageType[] = [
     { name: RouterPages.ERROR_500, page: Pages.Error500Page },
     { name: RouterPages.ERROR_404, page: Pages.Error400Page },
-    { name: RouterPages.SIGN_IN, page: Pages.SignInPage }
+    { name: RouterPages.SIGN_IN, page: Pages.SignInPage },
+    { name: RouterPages.SIGN_UP, page: Pages.SignUpPage },
+    { name: RouterPages.PROFILE, page: Pages.ProfilePage },
+    { name: RouterPages.CHANGE_DATA, page: Pages.ChangeDataPage },
+    { name: RouterPages.CHANGE_PASSWORD, page: Pages.ChangePasswordPage },
+    { name: RouterPages.CHAT, page: Pages.ChatPage }
 ]
 
 export const navigate = (page: string) => {
@@ -18,21 +31,5 @@ export const navigate = (page: string) => {
 
     if (!Component) return;
 
-    const context: unknown = null;
-    let rootTag: keyof HTMLElementTagNameMap | null | undefined = 'div';
-
-    switch (page) {
-        case RouterPages.ERROR_500:
-            rootTag = null;
-            break;
-        case RouterPages.ERROR_404:
-            rootTag = null;
-            break;
-        case RouterPages.SIGN_IN:
-            break;
-    }
-
-    const resultComponent = context ? new Component(rootTag , context) : new Component(rootTag, {});
-
-    renderDOM('app', resultComponent);
+    renderDOM('app', new Component('div', {}));
 };

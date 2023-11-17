@@ -5,4 +5,6 @@ export enum RouterPages {
     ERROR_404 = 'error404',
     CHAT = 'chat',
     PROFILE = 'profile',
+    CHANGE_DATA = 'change-data',
+    CHANGE_PASSWORD = 'change-password',
 }

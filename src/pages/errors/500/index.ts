@@ -1,28 +1,25 @@
 import Component from '../../../core/component';
 import { template } from '../template';
-import ErrorTemplateComponent from '../../../components/error-template/error-template';
-import LinkComponent from '../../../components/link/link';
-
-type Error500PageProps = {
-    errorTemplate?: Component
-};
-
-const link = new LinkComponent(null, {
-    href: '/src/pages/chat/index.html',
-    linkText: 'Назад к чатам'
-});
+import { ErrorTemplateComponent, LinkComponent } from '../../../components';
+import { navigate } from '../../../router/router';
+import { RouterPages } from '../../types';
 
 export default class Error500Page extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: Error500PageProps) {
-        props = {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
+        super(tagName, {
             errorTemplate: new ErrorTemplateComponent(null, {
                 code: '500',
                 text: 'Упс, кажется что-то пошло не так. Приходите позже',
-                link
+                link: new LinkComponent(null, {
+                    linkText: 'Назад к чатам',
+                    variant: 'primary',
+                    size: 'l',
+                    onClick: () => {
+                        navigate(RouterPages.CHAT);
+                    }
+                })
             })
-        };
-
-        super(tagName, props)
+        })
     }
 
     render() {

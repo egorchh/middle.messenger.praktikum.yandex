@@ -1,28 +1,25 @@
 import Component from '../../../core/component';
+import { ErrorTemplateComponent, LinkComponent } from '../../../components';
 import { template } from '../template';
-import ErrorTemplateComponent from '../../../components/error-template/error-template';
-import LinkComponent from '../../../components/link/link';
-
-type Error400PageProps = {
-    errorTemplate?: Component
-};
-
-const link = new LinkComponent(null, {
-    href: '/src/pages/chat/index.html',
-    linkText: 'Назад к чатам'
-});
+import { navigate } from '../../../router/router';
+import { RouterPages } from '../../types';
 
 export default class Error400Page extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: Error400PageProps) {
-        props = {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
+        super(tagName, {
             errorTemplate: new ErrorTemplateComponent(null, {
                 code: '404',
                 text: 'Кажется вы попали не туда, вернитесь назад и попробуйте снова',
-                link
+                link: new LinkComponent('a', {
+                    linkText: 'Назад к чатам',
+                    variant: 'primary',
+                    size: 'l',
+                    onClick: () => {
+                        navigate(RouterPages.CHAT);
+                    }
+                })
             })
-        };
-
-        super(tagName, props)
+        });
     }
 
     render() {

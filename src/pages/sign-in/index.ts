@@ -1,28 +1,17 @@
 import Component from '../../core/component';
 import { template } from './template';
-import LinkComponent from '../../components/link/link';
-import { ButtonComponent, InputComponent } from '../../components';
-import helloImage from './assets/hello.png';
+import { ButtonComponent, InputComponent, LinkComponent } from '../../components';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
-
-type SignInPageProps = {
-    link?: Component;
-    inputs?: Component[];
-    button?: Component;
-    imageSrc?: string;
-    classNames?: Array<string | Record<string, boolean>>
-};
+import { configureComponentsArray } from '../../utils/configureComponentsArray';
+import contextMock from '../../__fixtures__/contextMock';
+import helloImage from './assets/hello.png';
 
 const link = new LinkComponent('div', {
-    href: '/src/pages/sign-up/index.html',
     linkText: 'Нет аккаунта?',
-    classNames: [ 'auth-page_link' ],
-    events: {
-        click: (event) => {
-            event?.preventDefault();
-            navigate(RouterPages.ERROR_404); // TODO: ссылка на страницу регистрации
-        }
+    onClick: (event) => {
+        event?.preventDefault();
+        navigate(RouterPages.SIGN_UP);
     }
 });
 
@@ -36,60 +25,26 @@ const button = new ButtonComponent('div', {
         const login = (document.getElementById('signin-login') as HTMLInputElement).value;
         const password = (document.getElementById('signin-password') as HTMLInputElement).value;
 
-        console.log({ login, password });
+        if (login && password) {
+            console.log({ login, password });
+			navigate(RouterPages.CHAT);
+        } else {
+            console.log('Заполните поля');
+        }
     }
 });
 
-const loginInput = new InputComponent('div', {
-    id: 'signin-login',
-    placeholder: 'Логин',
-    type: 'text',
-    name: 'login',
-    value: undefined,
-    label: 'Логин',
-    error: undefined,
-    classNames: [ 'auth-page_input' ],
-    onBlur: (event) => {
-        console.log('blur');
-    },
-    onChange: (event) => {
-        console.log('change');
-    }
-})
-
-const passwordInput = new InputComponent('div', {
-    id: 'signin-password',
-    placeholder: 'Пароль',
-    type: 'password',
-    name: 'password',
-    value: undefined,
-    label: 'Пароль',
-    error: undefined,
-    classNames: [ 'auth-page_input' ],
-    onBlur: (event) => {
-        console.log('blur');
-    },
-    onChange: (event) => {
-        console.log('change');
-    }
-})
-
 export class SignInPage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: SignInPageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
-        props = {
+        super(tagName, {
             link,
             button,
-            inputs: [
-                loginInput,
-                passwordInput
-            ],
+            inputs: configureComponentsArray(InputComponent, contextMock.signin.inputs, { classNames: [ 'auth-page_input' ] }),
             imageSrc: helloImage,
             classNames: [ 'page-flex' ]
-        };
-
-        super(tagName, props)
+        })
     }
 
     render() {

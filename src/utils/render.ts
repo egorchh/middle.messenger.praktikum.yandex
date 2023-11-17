@@ -1,9 +1,12 @@
 import Component from '../core/component';
 
-function render(query: string, component: Component) {
-    const root = document.getElementById(query);
+function render(queryId: string, component: Component) {
+    const root = document.getElementById(queryId);
 
-    if (root) {
+    if (queryId === 'modal' && root) {
+        root.innerHTML = '<div class="overlay"></div>';
+        root.appendChild(component.getContent()!);
+    } else if (root) {
         root.innerHTML = '';
         root.appendChild(component.getContent()!);
     }
