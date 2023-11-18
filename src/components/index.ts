@@ -9,7 +9,6 @@ import { SearchBarComponent, SearchBarComponentProps } from './search';
 import { BottomSheetComponent, BottomSheetComponentProps } from './sheet';
 import { MessageComponent, MessageComponentProps } from './message';
 import { MessageInputComponent, MessageInputComponentProps } from './message-input';
-import { ErrorTemplateComponent } from './error-template';
 import { PhotoPickerComponent, PhotoPickerComponentProps } from './photo-picker';
 import { PopupComponent, PopupComponentProps } from './popup';
 
@@ -24,7 +23,6 @@ export {
     BottomSheetComponent,
     MessageComponent,
     MessageInputComponent,
-    ErrorTemplateComponent,
     LinkComponent,
     PhotoPickerComponent,
     PopupComponent

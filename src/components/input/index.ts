@@ -37,7 +37,7 @@ export class InputComponent extends Component {
                     name,
                     value: value || ''
                 },
-                variant: classVariant,
+                variant: props.variant,
                 onBlur: (event: Event | undefined) => {
                     if (!event) return;
 

@@ -68,6 +68,7 @@ export default class Component {
         const { tagName } = this._meta;
 
         if (tagName === null) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			//@ts-ignore
             this._element = this._createDocumentElement('template').content;
         } else {

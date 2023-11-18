@@ -23,7 +23,7 @@ export class InputFieldComponent extends Component {
         const classNamesFromProps = props.classNames ? [ ...props.classNames ] : []
 
         super(tagName, {
-            classNames: classNamesFromProps.concat([ `${props.variant ? props.variant : 'denied-'}input-component_field` ]),
+            classNames: classNamesFromProps.concat([ `${props.variant === 'profile' ? 'profile-' : ''}input-component_field` ]),
             attributes: {
                 type,
                 id,
