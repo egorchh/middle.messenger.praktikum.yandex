@@ -6,11 +6,6 @@ import contextMock from '../../__fixtures__/contextMock';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
 
-type ChangeDataPageProps = {
-    inputs?: InputComponent[];
-    backLink?: BackLinkComponent;
-};
-
 const backLink = new BackLinkComponent('a', {
     onClick: () => {
         navigate(RouterPages.PROFILE);
@@ -24,11 +19,10 @@ const button = new ButtonComponent('div', {
 });
 
 export class ChangeDataPage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: ChangeDataPageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            ...props,
             classNames: [ 'page-flex' ],
 			form: new FormComponent('form', {
 				legend: 'Форма смены данных профиля',

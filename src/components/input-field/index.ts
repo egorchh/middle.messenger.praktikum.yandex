@@ -46,8 +46,6 @@ export class InputFieldComponent extends Component {
                             value: target.value
                         }
                     })
-
-                    // TODO: Можно прикрутить валидацию сюда чтобы везде ее не пихать
                 }
             }
         });

@@ -1,4 +1,4 @@
-import Component, { Props } from '../../core/component';
+import Component from '../../core/component';
 import { template } from './template';
 import {
 	BottomSheetComponent,
@@ -9,14 +9,6 @@ import {
 } from '../../components';
 import { configureComponentsArray } from '../../utils/configureComponentsArray';
 import contextMock from '../../__fixtures__/contextMock';
-
-type ChatPageProps = {
-    searchBar?: SearchBarComponent;
-    friends?: FriendComponent[];
-    bottomSheet?: BottomSheetComponent;
-    chatAvatar?: unknown;
-    messages?: MessageComponent;
-} & Props;
 
 const searchBar = new SearchBarComponent('label', {
     onBlur: () => {
@@ -33,11 +25,10 @@ const messageInput = new MessageInputComponent('div', {
 });
 
 export class ChatPage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: ChatPageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            ...props,
             classNames: [ 'page-grid' ],
             searchBar,
             friends: configureComponentsArray(FriendComponent, contextMock.chat.friends, { classNames: [ 'sidebar_friends-person' ] }),

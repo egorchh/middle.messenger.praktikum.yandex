@@ -6,13 +6,6 @@ import { RouterPages } from '../types';
 import { configureComponentsArray } from '../../utils/configureComponentsArray';
 import contextMock from '../../__fixtures__/contextMock';
 
-type SignUpPageProps = {
-    link?: LinkComponent;
-    inputs?: InputComponent[];
-    button?: ButtonComponent;
-    classNames?: Array<string | Record<string, boolean>>
-};
-
 const link = new LinkComponent('div', {
     linkText: 'Уже есть аккаунт?',
     onClick: (event) => {
@@ -28,11 +21,10 @@ const button = new ButtonComponent('div', {
 });
 
 export class SignUpPage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: SignUpPageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            ...props,
             link,
 			form: new FormComponent('form', {
 				legend: 'Форма регистрации',

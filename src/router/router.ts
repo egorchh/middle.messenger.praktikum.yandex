@@ -31,5 +31,5 @@ export const navigate = (page: string) => {
 
     if (!Component) return;
 
-    renderDOM('app', new Component('div', {}));
+    renderDOM('app', new Component('div'));
 };
