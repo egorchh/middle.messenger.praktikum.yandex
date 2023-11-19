@@ -11,6 +11,7 @@ import { MessageComponent, MessageComponentProps } from './message';
 import { MessageInputComponent, MessageInputComponentProps } from './message-input';
 import { PhotoPickerComponent, PhotoPickerComponentProps } from './photo-picker';
 import { PopupComponent, PopupComponentProps } from './popup';
+import { FormComponent, FormComponentProps } from './form';
 
 export {
     ButtonComponent,
@@ -25,7 +26,8 @@ export {
     MessageInputComponent,
     LinkComponent,
     PhotoPickerComponent,
-    PopupComponent
+    PopupComponent,
+	FormComponent
 };
 
 export type {
@@ -41,5 +43,6 @@ export type {
     MessageInputComponentProps,
     LinkComponentProps,
     PhotoPickerComponentProps,
-    PopupComponentProps
+    PopupComponentProps,
+	FormComponentProps
 };

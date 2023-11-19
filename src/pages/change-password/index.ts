@@ -1,6 +1,6 @@
 import Component from '../../core/component';
 import { template } from './template';
-import { ButtonComponent, InputComponent, BackLinkComponent } from '../../components';
+import { ButtonComponent, InputComponent, BackLinkComponent, FormComponent } from '../../components';
 import { configureComponentsArray } from '../../utils/configureComponentsArray';
 import contextMock from '../../__fixtures__/contextMock';
 import { navigate } from '../../router/router';
@@ -21,9 +21,7 @@ const button = new ButtonComponent('div', {
     type: 'submit',
     text: 'Сохранить изменения',
     classNames: [ 'change-data-page_button' ],
-    onClick: (event: Event | undefined) => {
-        event?.preventDefault();
-
+    onClick: () => {
         const oldPassword = (document.getElementById('old-password') as HTMLInputElement).value;
         const newPassword = (document.getElementById('new-password') as HTMLInputElement).value;
         const newPasswordRepeat = (document.getElementById('new-password-repeat') as HTMLInputElement).value;
@@ -33,8 +31,6 @@ const button = new ButtonComponent('div', {
                 console.log('Вы допустили ошибку при повторном вводе нового пароля');
             } else if (newPassword === oldPassword) {
                 console.log('Новый и старый пароли не должны совпадать');
-            } else {
-                console.log({ oldPassword, newPassword, newPasswordRepeat });
             }
         } else {
             console.log('Заполните поля');
@@ -49,9 +45,19 @@ export class ChangePasswordPage extends Component {
         super(tagName, {
             ...props,
             classNames: [ 'page-flex' ],
-            inputs: configureComponentsArray(InputComponent, contextMock['change-password'].inputs, { classNames: [ 'change-data-page_input' ] }),
-            backLink,
-            button
+			form: new FormComponent('form', {
+				legend: 'Форма смены пароля профиля',
+				fieldsetClass: '',
+				inputs: configureComponentsArray(InputComponent, contextMock['change-password'].inputs, { classNames: [ 'change-data-page_input' ] }),
+				button,
+				attributes: {
+					name: 'change-password'
+				},
+				classNames: [ 'change-data-page_form', 'change-data-page_inputs' ],
+				required: true,
+				variant: 'profile'
+			}),
+            backLink
         });
     }
 

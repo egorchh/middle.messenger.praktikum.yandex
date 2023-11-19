@@ -1,6 +1,6 @@
 import Component from '../../core/component';
 import { template } from './template';
-import { ButtonComponent, InputComponent, LinkComponent } from '../../components';
+import { ButtonComponent, FormComponent, InputComponent, LinkComponent } from '../../components';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
 import { configureComponentsArray } from '../../utils/configureComponentsArray';
@@ -24,19 +24,7 @@ const link = new LinkComponent('div', {
 const button = new ButtonComponent('div', {
     type: 'submit',
     text: 'Создать аккаунт',
-    classNames: [ 'registration-page_button' ],
-    onClick: (event) => {
-        event?.preventDefault();
-
-        const login = (document.getElementById('signin-login') as HTMLInputElement).value;
-        const password = (document.getElementById('signin-password') as HTMLInputElement).value;
-
-        if (login && password) {
-            console.log({ login, password });
-        } else {
-            console.log('Заполните поля');
-        }
-    }
+    classNames: [ 'registration-page_button' ]
 });
 
 export class SignUpPage extends Component {
@@ -46,8 +34,14 @@ export class SignUpPage extends Component {
         super(tagName, {
             ...props,
             link,
-            button,
-            inputs: configureComponentsArray(InputComponent, contextMock.signup.inputs, { classNames: [ 'registration-page_input' ] }),
+			form: new FormComponent('form', {
+				legend: 'Форма регистрации',
+				fieldsetClass: '',
+				inputs: configureComponentsArray(InputComponent, contextMock.signup.inputs, { classNames: [ 'registration-page_input' ] }),
+				button,
+				required: true,
+				variant: 'normal'
+			}),
             classNames: [ 'page-flex' ]
         })
     }

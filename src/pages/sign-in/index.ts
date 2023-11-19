@@ -1,6 +1,6 @@
 import Component from '../../core/component';
 import { template } from './template';
-import { ButtonComponent, InputComponent, LinkComponent } from '../../components';
+import { ButtonComponent, FormComponent, InputComponent, LinkComponent } from '../../components';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
 import { configureComponentsArray } from '../../utils/configureComponentsArray';
@@ -18,20 +18,7 @@ const link = new LinkComponent('div', {
 const button = new ButtonComponent('div', {
     type: 'submit',
     text: 'Войти',
-    classNames: [ 'auth-page_button' ],
-    onClick: (event) => {
-        event?.preventDefault();
-
-        const login = (document.getElementById('signin-login') as HTMLInputElement).value;
-        const password = (document.getElementById('signin-password') as HTMLInputElement).value;
-
-        if (login && password) {
-            console.log({ login, password });
-			navigate(RouterPages.CHAT);
-        } else {
-            console.log('Заполните поля');
-        }
-    }
+    classNames: [ 'auth-page_button' ]
 });
 
 export class SignInPage extends Component {
@@ -41,7 +28,17 @@ export class SignInPage extends Component {
         super(tagName, {
             link,
             button,
-            inputs: configureComponentsArray(InputComponent, contextMock.signin.inputs, { classNames: [ 'auth-page_input' ] }),
+			form: new FormComponent('form', {
+				legend: 'Форма авторизации',
+				fieldsetClass: 'auth-page_fieldset',
+				attributes: {
+					name: 'sing-in'
+				},
+				inputs: configureComponentsArray(InputComponent, contextMock.signin.inputs, { classNames: [ 'auth-page_input' ] }),
+				button,
+				required: true,
+				variant: 'normal'
+			}),
             imageSrc: helloImage,
             classNames: [ 'page-flex' ]
         })

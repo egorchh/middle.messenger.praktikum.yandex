@@ -11,7 +11,7 @@ export type InputComponentProps = {
     value?: string;
     error?: string;
     disable?: boolean;
-    variant?: 'normal' | 'profile'
+    variant?: 'normal' | 'profile';
     onBlur?: (event: Event) => void;
     inputField?: InputFieldComponent;
 } & Props;
@@ -63,7 +63,7 @@ export class InputComponent extends Component {
                             value: targetValue
                         });
 
-                        target.classList.remove('input-component_error');
+                        target.classList.remove(`${classVariant}input-component_error`);
                     }
                 }
             })

@@ -64,7 +64,11 @@ const validateMessage = (value?: string) => {
     if (!value) return 'Сообщение не может быть пустым';
 }
 
-export const validateTargetValue = (name: string, value: string) => {
+export const validateTargetValue = (name: string, value: string, required?: boolean) => {
+	if (value === '' && required) {
+		return 'Заполните поле';
+	}
+
     switch (name) {
         case 'email':
             return validateEmail(value);

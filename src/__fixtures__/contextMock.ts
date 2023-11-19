@@ -59,19 +59,19 @@ const context = {
     },
     'change-data': {
         inputs: [
-            { id: 'change-email', type: 'email', value: 'pochta@yandex.ru', label: 'Почта', name: 'email', disable: false, variant: 'profile' },
-            { id: 'change-login', type: 'text', value: 'egorchh', label: 'Логин', name: 'login', disable: false, variant: 'profile' },
-            { id: 'change-name', type: 'text', value: 'Егор', label: 'Имя', name: 'first_name', disable: false, variant: 'profile' },
-            { id: 'change-lastname', type: 'text', value: 'Подольский', label: 'Фамилия', name: 'second_name', disable: false, variant: 'profile' },
-            { id: 'change-nickname', type: 'text', value: 'egorchh', label: 'Имя в чате', name: 'display_name', disable: false, variant: 'profile' },
-            { id: 'change-tel', type: 'tel', value: '+7 (999) 999 99 99', label: 'Телефон', name: 'phone', disable: false, variant: 'profile' }
+            { id: 'change-email', placeholder: 'Почта', type: 'email', value: 'pochta@yandex.ru', label: 'Почта', name: 'email', variant: 'profile' },
+            { id: 'change-login', placeholder: 'Логин', type: 'text', value: 'egorchh', label: 'Логин', name: 'login', variant: 'profile' },
+            { id: 'change-name', placeholder: 'Имя', type: 'text', value: 'Егор', label: 'Имя', name: 'first_name', variant: 'profile' },
+            { id: 'change-lastname', placeholder: 'Фамилия', type: 'text', value: 'Подольский', label: 'Фамилия', name: 'second_name', variant: 'profile' },
+            { id: 'change-nickname', placeholder: 'Имя в чате', type: 'text', value: 'egorchh', label: 'Имя в чате', name: 'display_name', variant: 'profile' },
+            { id: 'change-tel', placeholder: 'Номер телефона', type: 'tel', value: '+7 (999) 999 99 99', label: 'Телефон', name: 'phone', variant: 'profile' }
         ]
     },
     'change-password': {
         inputs: [
-            { id: 'old-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Старый пароль', name: 'oldPassword', disable: false, variant: 'profile' },
-            { id: 'new-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль', name: 'newPassword', disable: false, variant: 'profile' },
-            { id: 'new-password-repeat', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль (еще раз)', name: 'newPassword', disable: false, variant: 'profile' }
+            { id: 'old-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Старый пароль', name: 'oldPassword', variant: 'profile' },
+            { id: 'new-password', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль', name: 'newPassword', variant: 'profile' },
+            { id: 'new-password-repeat', placeholder: '•••••••••', type: 'password', value: undefined, label: 'Новый пароль (еще раз)', name: 'newPassword', variant: 'profile' }
         ]
     },
     chat: {

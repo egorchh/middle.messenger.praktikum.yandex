@@ -10,6 +10,7 @@ export type InputFieldComponentProps = {
         value?: string;
         accept?: string;
     };
+	required?: boolean;
     variant?: string;
     events?: Record<string, (event?: Event) => void>;
     onBlur?: (event?: Event) => void;

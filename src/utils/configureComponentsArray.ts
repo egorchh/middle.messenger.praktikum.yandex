@@ -10,8 +10,8 @@ export const configureComponentsArray = (
 ): ComponentClass[] => {
     const result: ComponentClass[] = [];
 
-    configurationArray.forEach((configuration) => {
-        result.push(new Component(options?.tagName ? options.tagName : 'div', { ...configuration, classNames: options?.classNames }));
+    configurationArray.forEach((configuration, index) => {
+		result.push(new Component(options?.tagName ? options.tagName : 'div', { ...configuration, classNames: options?.classNames, orderNumber: String(index) }));
     });
 
     return result;

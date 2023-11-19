@@ -2,7 +2,7 @@ import Component from '../../core/component';
 import { template } from './template';
 import {
 	AvatarComponent,
-	BackLinkComponent,
+	BackLinkComponent, FormComponent,
 	InputComponent,
 	LinkComponent,
 	PhotoPickerComponent,
@@ -20,7 +20,6 @@ type ProfilePageProps = {
     inputs?: InputComponent[];
     backLink?: BackLinkComponent;
     avatar?: AvatarComponent;
-    disabledForm?: boolean;
     username?: string;
 };
 
@@ -33,8 +32,6 @@ const avatar = new AvatarComponent('div', {
     src: avatarFromSessionStorage ? avatarFromSessionStorage : '',
     onClick: (event: Event | undefined) => {
         event?.preventDefault();
-
-        console.log('change avatar');
 
         const popup = new PopupComponent('div', {
             content: new PhotoPickerComponent('div', {})
@@ -60,8 +57,15 @@ export class ProfilePage extends Component {
             username: 'Егор',
             classNames: [ 'page-flex' ],
             avatar,
-            disabledForm: true,
-            inputs: configureComponentsArray(InputComponent, contextMock.profile.inputs, { classNames: [ 'profile-page_input' ] }),
+			form: new FormComponent('form', {
+				legend: 'Данные пользователя',
+				disabled: true,
+				fieldsetClass: '',
+				inputs: configureComponentsArray(InputComponent, contextMock.profile.inputs, { classNames: [ 'profile-page_input' ] }),
+				classNames: [ 'profile-page_form' ],
+				required: false,
+				variant: 'profile'
+			}),
             links: configureComponentsArray(LinkComponent, contextMock.profile.links),
             backLink
         })

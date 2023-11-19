@@ -23,8 +23,6 @@ export class LinkComponent extends Component  {
     }
 
     render() {
-		console.log('render link')
-		console.log(this._props)
         return this.compile('{{ linkText }}');
     }
 }

@@ -9,13 +9,7 @@ export const template = `
                     alt="Изображение: 'Привет'"
             />
         </div>
-        <form name="sing-in">
-            <fieldset class="auth-page_fieldset">
-                <legend class="visually-hidden">Форма авторизации</legend>
-                {{{ inputs }}}
-            </fieldset>
-            {{{ button }}}
-        </form>
+        {{{ form }}}
         <div class="auth-page_link">
             {{{ link }}}
         </div>
