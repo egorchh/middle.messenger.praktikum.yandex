@@ -1,0 +1,37 @@
+.profile-input-component {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &_field {
+        width: 100%;
+        background: none;
+        padding: 10px 0 10px 10px;
+        font-family: inherit;
+        font-size: 16px;
+        text-align: end;
+
+        &::placeholder {
+            color: var(--primary-gray-color);
+        }
+    }
+
+    &_label {
+        width: 400px;
+        max-width: 300px;
+        margin-right: 10px;
+        font-weight: 600;
+    }
+
+    &_error {
+        &-text {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: 12px;
+            color: var(--red-color);
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+    }
+}

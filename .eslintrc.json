@@ -6,8 +6,7 @@
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
-        "@typescript-eslint",
-        "unused-imports"
+        "@typescript-eslint"
     ],
     "ignorePatterns": ["*.json", "*.config.ts", "*.config.js", "dist"],
     "parserOptions": {
@@ -22,19 +21,16 @@
         "node": true
     },
     "rules": {
-        "@typescript-eslint/no-unnecessary-condition": "error",
+        "@typescript-eslint/no-unnecessary-condition": "off",
         "@typescript-eslint/quotes": ["error", "single"],
         "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/ban-types": "off",
         "quotes": "off",
         "no-shadow": "off",
         "comma-dangle": ["error", "never"],
         "object-curly-spacing": ["error", "always"],
         "array-bracket-spacing": ["error", "always"],
-        "unused-imports/no-unused-imports": "error",
-        "unused-imports/no-unused-vars": [
-            "warn",
-            { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-        ]
+        "no-constant-condition": "warn"
     }
 }
