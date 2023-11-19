@@ -14,20 +14,22 @@ type OptionsType = {
 	timeout?: number;
 };
 
+type HTTPMethod = (url: string, options?: OptionsType) => Promise<unknown>
+
 export default class HTTPTransport {
-	public get = (url: string, options: OptionsType = {}) => {
+	public get: HTTPMethod = (url, options = {}) => {
 		return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 	};
 
-	public post = (url: string, options: OptionsType = {}) => {
+	public post: HTTPMethod = (url, options = {}) => {
 		return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 	};
 
-	public put = (url: string, options: OptionsType = {}) => {
+	public put: HTTPMethod = (url, options = {}) => {
 		return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 	};
 
-	public delete = (url: string, options: OptionsType = {}) => {
+	public delete: HTTPMethod = (url, options = {}) => {
 		return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 	};
 

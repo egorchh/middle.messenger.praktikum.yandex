@@ -9,55 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/styles/index.scss">
   </head>
-  <style>
-	  .render-root {
-		  display: flex;
-		  flex-direction: column;
-		  align-items: flex-start;
-		  padding: 40px;
-		  gap: 10px;
-	  }
-
-	  .render-root button {
-		  font-family: 'Nunito', sans-serif;
-		  font-weight: 600;
-		  font-size: 20px;
-		  background: none;
-		  cursor: pointer;
-	  }
-
-	  .render-root button:hover {
-		  color: var(--light-blue-color);
-	  }
-
-	  .render-root span {
-		  color: var(--blue-color);
-		  pointer-events: none;
-	  }
-
-	  .render-root h4 {
-		  color: var(--primary-gray-color);
-		  font-weight: 400;
-		  margin-top: 6px;
-	  }
-
-	  .render-card {
-		  display: flex;
-		  flex-direction: column;
-		  gap: 10px;
-		  padding: 20px 20px 30px;
-		  background: var(--secondary-bg-color);
-		  border-radius: 10px;
-		  width: 700px;
-	  }
-
-	  .render-card_pages {
-		  display: flex;
-		  flex-direction: column;
-		  align-items: flex-start;
-		  gap: 5px;
-	  }
-  </style>
   <body>
     <div id="app">
 		<main class="render-root">
@@ -69,17 +20,29 @@
 					<h4>На страницах работает перемещение между страницами, однако, страница авторизации и регистрации вырезаны из общего флоу. Поэтому было принято решение создать эту страницу</h4>
 				</div>
 			</div>
-			<div class="render-card">
+			<nav class="render-card">
 				<h2>Страницы:</h2>
-				<div class="render-card_pages">
-					<button id="signin-render">Страница <span>авторизации</span></button>
-					<button id="signup-render">Страница <span>регистрации</span></button>
-					<button id="profile-render">Страница <span>профиля</span></button>
-					<button id="change-data-render">Страница <span>смены данных</span></button>
-					<button id="change-password-render">Страница <span>смены пароля</span></button>
-					<button id="chat-render">Страница <span>чата</span></button>
-				</div>
-			</div>
+				<ul class="render-card_pages">
+					<li>
+						<button id="signin-render">Страница <span>авторизации</span></button>
+					</li>
+					<li>
+						<button id="signup-render">Страница <span>регистрации</span></button>
+					</li>
+					<li>
+						<button id="profile-render">Страница <span>профиля</span></button>
+					</li>
+					<li>
+						<button id="change-data-render">Страница <span>смены данных</span></button>
+					</li>
+					<li>
+						<button id="change-password-render">Страница <span>смены пароля</span></button>
+					</li>
+					<li>
+						<button id="chat-render">Страница <span>чата</span></button>
+					</li>
+				</ul>
+			</nav>
 		</main>
 	</div>
     <div id="modal"></div>
