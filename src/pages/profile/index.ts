@@ -15,14 +15,6 @@ import renderDOM from '../../utils/render';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
 
-type ProfilePageProps = {
-    links?: LinkComponent[];
-    inputs?: InputComponent[];
-    backLink?: BackLinkComponent;
-    avatar?: AvatarComponent;
-    username?: string;
-};
-
 const avatarFromSessionStorage = sessionStorage.getItem('avatarSrc');
 
 const avatar = new AvatarComponent('div', {
@@ -49,11 +41,10 @@ const backLink = new BackLinkComponent('a', {
 })
 
 export class ProfilePage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: ProfilePageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            ...props,
             username: 'Егор',
             classNames: [ 'page-flex' ],
             avatar,

@@ -5,13 +5,13 @@
 @import "variables.scss";
 
 // pages
-@import "../pages/sign-in";
-@import "../pages/sign-up";
-@import "../pages/profile";
-@import "../pages/chat";
-@import "../pages/tooltips";
-@import "../pages/change-data";
-@import "../pages/errors";
+@import "../pages/sign-in/index.scss";
+@import "../pages/sign-up/index.scss";
+@import "../pages/profile/index.scss";
+@import "../pages/chat/index.scss";
+@import "../pages/tooltips/index.scss";
+@import "../pages/change-data/index.scss";
+@import "../pages/errors/index.scss";
 
 // partials
 @import "../components/input/input.scss";
@@ -33,7 +33,7 @@
     height: 100vh;
     background: url("../assets/images/bg-noise.jpeg") round;
     color: var(--black-color);
-    font-family: 'Nunito', sans-serif;
+    font-family: Nunito, sans-serif;
     font-weight: 400;
 }
 
@@ -64,7 +64,7 @@
     padding: 30px;
     width: 340px;
     border-radius: 12px;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 14%);
     background: var(--main-bg-color);
 }
 

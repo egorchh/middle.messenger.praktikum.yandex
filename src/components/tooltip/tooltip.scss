@@ -4,7 +4,7 @@
     position: absolute;
     padding: 25px 35px 25px 25px;
     border-radius: 12px;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 14%);
     background: var(--main-bg-color);
     z-index: var(--tooltip-zindex);
 
@@ -17,10 +17,7 @@
             &:before {
                 content: '';
                 position: absolute;
-                top: -5px;
-                bottom: -5px;
-                right: -35px;
-                left: -25px;
+				inset: -5px -5px -35px -25px;
                 background-color: var(--friend-hover);
             }
 
@@ -56,10 +53,7 @@
         &:before {
             content: '';
             position: absolute;
-            top: -5px;
-            bottom: -5px;
-            right: -35px;
-            left: -25px;
+			inset: -5px -5px -35px -25px;
             background-color: var(--red-background-color);
         }
 

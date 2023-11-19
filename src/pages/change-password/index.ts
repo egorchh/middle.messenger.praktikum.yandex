@@ -6,11 +6,6 @@ import contextMock from '../../__fixtures__/contextMock';
 import { navigate } from '../../router/router';
 import { RouterPages } from '../types';
 
-type ChangePasswordPageProps = {
-    inputs?: InputComponent[];
-    backLink?: BackLinkComponent;
-};
-
 const backLink = new BackLinkComponent('a', {
     onClick: () => {
         navigate(RouterPages.PROFILE);
@@ -32,18 +27,15 @@ const button = new ButtonComponent('div', {
             } else if (newPassword === oldPassword) {
                 console.log('Новый и старый пароли не должны совпадать');
             }
-        } else {
-            console.log('Заполните поля');
         }
     }
-}); // TODO: валидация при сабмите
+});
 
 export class ChangePasswordPage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: ChangePasswordPageProps) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            ...props,
             classNames: [ 'page-flex' ],
 			form: new FormComponent('form', {
 				legend: 'Форма смены пароля профиля',
