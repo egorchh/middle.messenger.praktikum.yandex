@@ -1,12 +1,15 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { config } from 'dotenv';
+
+config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'dist')));
 

@@ -1,0 +1,49 @@
+.photo-picker-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 200px;
+
+    &_button {
+        margin-top: 30px;
+        width: 200px;
+    }
+
+    &_title {
+        margin-bottom: 20px;
+    }
+
+    &_input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        padding: 20px;
+        width: 100%;
+        border: 2px dashed var(--primary-gray-color);
+        border-radius: 15px;
+
+        &:hover {
+            border: 2px dashed var(--blue-color);
+        }
+    }
+
+    &_label {
+        cursor: pointer;
+        color: var(--blue-color);
+        font-weight: 600;
+
+        &:hover {
+            color: var(--light-blue-color);
+        }
+    }
+
+    &_placeholder {
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
