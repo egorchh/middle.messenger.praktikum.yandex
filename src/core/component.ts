@@ -135,6 +135,8 @@ export default class Component {
 
         const { children, props, lists } = this._getChildrenAndProps(nextProps);
 
+		console.log(children, props, lists);
+
         if (Object.values(children).length) {
             Object.assign(this._children, children);
         }
@@ -172,7 +174,7 @@ export default class Component {
     }
 
     protected render(): string | DocumentFragment {
-        return '';
+        return new DocumentFragment();
     }
 
     public addEvents() {
@@ -304,11 +306,12 @@ export default class Component {
         return fragment.content;
     }
 
-    public show() {
-        this.getContent()!.style.display = 'block';
+    public show(query: string, render: (query: string, block: Component) => void) {
+		this._eventBus.emit(Component.EVENTS.INIT);
+		render(query, this);
     }
 
     public hide() {
-        this.getContent()!.style.display = 'none';
+		this.getContent()!.remove();
     }
 }

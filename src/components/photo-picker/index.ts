@@ -3,7 +3,7 @@ import { template } from './template';
 import { ButtonComponent } from '../button';
 import { LinkComponent } from '../link';
 import { InputFieldComponent } from '../input-field';
-import removeFromDOM from '../../utils/removeFromDOM';
+import removeFromDOM from '../../core/utilities/removeFromDOM';
 
 export type PhotoPickerComponentProps = {
     title?: string

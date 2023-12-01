@@ -1,4 +1,4 @@
-import Component from '../core/component';
+import Component from '../component';
 
 function render(queryId: string, component: Component) {
     const root = document.getElementById(queryId);

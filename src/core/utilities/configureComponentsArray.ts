@@ -1,4 +1,4 @@
-import ComponentClass from '../core/component';
+import ComponentClass from '../component';
 
 export const configureComponentsArray = (
     Component: typeof ComponentClass,

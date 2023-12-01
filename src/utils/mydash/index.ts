@@ -4,3 +4,7 @@ export { first } from './first';
 export { last } from './last';
 export { range } from './range';
 export { rangeRight } from './rangeRight';
+export { trim } from './trim';
+export { merge } from './merge';
+export { set } from './set';
+export { queryString } from './queryString';

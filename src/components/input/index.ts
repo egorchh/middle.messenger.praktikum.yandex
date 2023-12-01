@@ -2,23 +2,25 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { InputFieldComponent } from '../input-field';
 import { validateTargetValue } from '../../utils/validation';
+import { connect } from '../../hocs/connect';
+import { UserInfo } from '../../types';
 
 export type InputComponentProps = {
     id: string;
     placeholder: string;
     type: HTMLInputElement['type'];
-    name: string;
+    name: keyof UserInfo;
     value?: string;
     error?: string;
     disable?: boolean;
     variant?: 'normal' | 'profile';
     onBlur?: (event: Event) => void;
     inputField?: InputFieldComponent;
+	data: UserInfo
 } & Props;
 
-export class InputComponent extends Component {
+class InputComponent extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: InputComponentProps) {
-
         const classNamesFromProps = props.classNames ? [ ...props.classNames ] : [];
 
         const { error, name, placeholder, type, id, variant, value } = props;
@@ -74,3 +76,11 @@ export class InputComponent extends Component {
         return this.compile(template, this._props);
     }
 }
+
+const mapStateToProps = (state: any, props: InputComponentProps) => {
+	return {
+		value: (state.user?.data && typeof state.user?.data[props.name] !== 'object') ? state.user.data[props.name] : undefined
+	}
+};
+
+export default connect(InputComponent, mapStateToProps);

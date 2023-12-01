@@ -1,35 +1,59 @@
-import { navigate } from './router/router';
-import { RouterPages } from './pages/types';
+// styles
+import './styles/index.scss';
 
-const startMain = document.querySelector('.render-root');
-const buttons = startMain?.querySelectorAll('button');
+// core
+import router from './core/router';
+import store from './core/store';
+import { Routes } from './types';
 
-buttons?.forEach((button) => {
-	button.addEventListener('click', (event?: Event) => {
-		const buttonTargetId = (event?.target as HTMLButtonElement).id;
+// services
+import { AuthService } from './services/auth-service';
 
-		switch (buttonTargetId) {
-			case 'signin-render':
-				navigate(RouterPages.SIGN_IN);
-				break;
-			case 'signup-render':
-				navigate(RouterPages.SIGN_UP);
-				break;
-			case 'profile-render':
-				navigate(RouterPages.PROFILE);
-				break;
-			case 'change-data-render':
-				navigate(RouterPages.CHANGE_DATA);
-				break;
-			case 'change-password-render':
-				navigate(RouterPages.CHANGE_PASSWORD);
-				break;
-			case 'chat-render':
-				navigate(RouterPages.CHAT);
-				break;
-			default:
-				return;
+// pages
+import {
+	Error400Page,
+	Error500Page,
+	SignInPage,
+	SignUpPage,
+	ProfilePage,
+	ChangePasswordPage,
+	ChangeDataPage,
+	ChatPage
+} from './pages';
+
+window.addEventListener('popstate', () => {
+	router.start();
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+	router
+		.use(Routes.Error500, Error500Page)
+		.use(Routes.Error400, Error400Page)
+		.use(Routes.SignUp, SignUpPage)
+		.use(Routes.SignIn, SignInPage)
+		.use(Routes.Profile, ProfilePage)
+		.use(Routes.ChangePassword, ChangePasswordPage)
+		.use(Routes.ChangeData, ChangeDataPage)
+		.use(Routes.Chat, ChatPage)
+
+	try {
+		await AuthService.fetchUser();
+
+		const currentPath = sessionStorage.getItem('sessionRoute');
+
+		if (currentPath) {
+			sessionStorage.removeItem('sessionRoute');
 		}
-	});
-})
 
+		const userData = store.getState('user.data');
+		const inAuthorized = Object.keys(userData).length && !Object.keys(userData).includes('reason');
+
+		if (inAuthorized) {
+			router.go(currentPath || Routes.Chat);
+		} else {
+			router.go(Routes.SignIn);
+		}
+	} catch (error) {
+		router.go(Routes.SignIn);
+	}
+});

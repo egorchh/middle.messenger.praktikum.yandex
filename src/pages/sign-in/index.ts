@@ -1,19 +1,11 @@
 import Component from '../../core/component';
 import { template } from './template';
 import { ButtonComponent, FormComponent, InputComponent, LinkComponent } from '../../components';
-import { navigate } from '../../router/router';
-import { RouterPages } from '../types';
-import { configureComponentsArray } from '../../utils/configureComponentsArray';
-import contextMock from '../../__fixtures__/contextMock';
+import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
 import helloImage from './assets/hello.png';
-
-const link = new LinkComponent('div', {
-    linkText: 'Нет аккаунта?',
-    onClick: (event) => {
-        event?.preventDefault();
-        navigate(RouterPages.SIGN_UP);
-    }
-});
+import { Routes } from '../../types';
+import { connect } from '../../hocs/connect';
+import { inputs } from './model/props';
 
 const button = new ButtonComponent('div', {
     type: 'submit',
@@ -21,12 +13,15 @@ const button = new ButtonComponent('div', {
     classNames: [ 'auth-page_button' ]
 });
 
-export class SignInPage extends Component {
+class SignInPage extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            link,
+            link: new LinkComponent('div', {
+				linkText: 'Нет аккаунта?',
+				path: Routes.SignUp
+			}),
             button,
 			form: new FormComponent('form', {
 				legend: 'Форма авторизации',
@@ -34,10 +29,11 @@ export class SignInPage extends Component {
 				attributes: {
 					name: 'sing-in'
 				},
-				inputs: configureComponentsArray(InputComponent, contextMock.signin.inputs, { classNames: [ 'auth-page_input' ] }),
+				inputs: configureComponentsArray(InputComponent, inputs, { classNames: [ 'auth-page_input' ] }),
 				button,
 				required: true,
-				variant: 'normal'
+				variant: 'normal',
+				flow: 'signin'
 			}),
             imageSrc: helloImage,
             classNames: [ 'page-flex' ]
@@ -48,3 +44,5 @@ export class SignInPage extends Component {
         return this.compile(template);
     }
 }
+
+export default connect(SignInPage);

@@ -2,7 +2,7 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { ButtonComponent } from '../button';
 import crossIcon from './assets/cross-icon.svg';
-import removeFromDOM from '../../utils/removeFromDOM';
+import removeFromDOM from '../../core/utilities/removeFromDOM';
 
 export type PopupComponentProps = {
     content?: unknown;

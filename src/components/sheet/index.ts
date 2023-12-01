@@ -3,8 +3,8 @@ import { template } from './template';
 import { ButtonComponent } from '../button';
 import plusIcon from './assets/plus-icon.svg';
 import arrowIcon from './assets/arrow-right.svg';
-import { navigate } from '../../router/router';
-import { RouterPages } from '../../pages/types';
+import router from '../../core/router';
+import { Routes } from '../../types';
 
 export type BottomSheetComponentProps = {
     nickname: string;
@@ -30,7 +30,7 @@ const redirectIconButton = new ButtonComponent('button', {
     onClick: (event?: Event) => {
         event?.preventDefault();
 
-        navigate(RouterPages.PROFILE);
+		router.go(Routes.Profile);
     }
 })
 

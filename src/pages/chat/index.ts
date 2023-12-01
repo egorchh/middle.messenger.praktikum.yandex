@@ -7,7 +7,7 @@ import {
 	MessageInputComponent,
 	SearchBarComponent
 } from '../../components';
-import { configureComponentsArray } from '../../utils/configureComponentsArray';
+import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
 import contextMock from '../../__fixtures__/contextMock';
 
 const searchBar = new SearchBarComponent('label', {

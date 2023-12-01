@@ -1,8 +1,8 @@
 import { ButtonComponent, ButtonComponentProps } from './button';
 import { AvatarComponent, AvatarComponentProps } from './avatar';
 import { LinkComponent, LinkComponentProps } from './link';
-import { BackLinkComponent, BackLinkComponentProps } from './back-link';
-import { InputComponent, InputComponentProps } from './input';
+import { BackLinkComponent } from './back-link';
+import { default as InputComponent, InputComponentProps } from './input';
 import { InputFieldComponent, InputFieldComponentProps } from './input-field';
 import { FriendComponent, FriendComponentProps } from './friend';
 import { SearchBarComponent, SearchBarComponentProps } from './search';
@@ -11,7 +11,7 @@ import { MessageComponent, MessageComponentProps } from './message';
 import { MessageInputComponent, MessageInputComponentProps } from './message-input';
 import { PhotoPickerComponent, PhotoPickerComponentProps } from './photo-picker';
 import { PopupComponent, PopupComponentProps } from './popup';
-import { FormComponent, FormComponentProps } from './form';
+import { default as FormComponent, FormComponentProps } from './form';
 
 export {
     ButtonComponent,
@@ -33,7 +33,6 @@ export {
 export type {
     ButtonComponentProps,
     AvatarComponentProps,
-    BackLinkComponentProps,
     InputComponentProps,
     InputFieldComponentProps,
     FriendComponentProps,

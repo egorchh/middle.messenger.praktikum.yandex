@@ -2,18 +2,18 @@ import Component from '../../core/component';
 import { template } from './template';
 import {
 	AvatarComponent,
-	BackLinkComponent, FormComponent,
+	BackLinkComponent,
+	FormComponent,
 	InputComponent,
 	LinkComponent,
 	PhotoPickerComponent,
 	PopupComponent
 } from '../../components';
-import { configureComponentsArray } from '../../utils/configureComponentsArray';
-import contextMock from '../../__fixtures__/contextMock';
+import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
 import photoCameraImage from './assets/photo-plug.svg';
-import renderDOM from '../../utils/render';
-import { navigate } from '../../router/router';
-import { RouterPages } from '../types';
+import renderDOM from '../../core/utilities/render';
+import { inputs, links } from './model/props';
+import { Routes } from '../../types';
 
 const avatarFromSessionStorage = sessionStorage.getItem('avatarSrc');
 
@@ -31,16 +31,9 @@ const avatar = new AvatarComponent('div', {
 
         renderDOM('modal', popup);
     }
-})
+});
 
-const backLink = new BackLinkComponent('a', {
-    onClick: (event) => {
-        event?.preventDefault();
-        navigate(RouterPages.CHAT);
-    }
-})
-
-export class ProfilePage extends Component {
+class ProfilePage extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
@@ -52,13 +45,13 @@ export class ProfilePage extends Component {
 				legend: 'Данные пользователя',
 				disabled: true,
 				fieldsetClass: '',
-				inputs: configureComponentsArray(InputComponent, contextMock.profile.inputs, { classNames: [ 'profile-page_input' ] }),
+				inputs: configureComponentsArray(InputComponent, inputs, { classNames: [ 'profile-page_input' ] }),
 				classNames: [ 'profile-page_form' ],
 				required: false,
 				variant: 'profile'
 			}),
-            links: configureComponentsArray(LinkComponent, contextMock.profile.links),
-            backLink
+            links: configureComponentsArray(LinkComponent, links),
+            backLink: new BackLinkComponent({ path: Routes.Chat })
         })
     }
 
@@ -66,3 +59,5 @@ export class ProfilePage extends Component {
         return this.compile(template);
     }
 }
+
+export default ProfilePage;
