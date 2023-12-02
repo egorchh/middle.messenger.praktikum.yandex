@@ -6,6 +6,7 @@ import removeFromDOM from '../../core/utilities/removeFromDOM';
 
 export type PopupComponentProps = {
     content?: unknown;
+	button?: unknown;
 } & Props;
 
 const crossButton = new ButtonComponent('button', {
@@ -27,7 +28,7 @@ export class PopupComponent extends Component  {
 
         super(tagName, {
             ...props,
-            button: crossButton,
+			closeButton: crossButton,
             classNames: [ 'popup' ]
         })
     }

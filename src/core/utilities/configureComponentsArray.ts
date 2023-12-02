@@ -10,9 +10,11 @@ export const configureComponentsArray = (
 ): ComponentClass[] => {
     const result: ComponentClass[] = [];
 
-    configurationArray.forEach((configuration, index) => {
-		result.push(new Component(options?.tagName ? options.tagName : 'div', { ...configuration, classNames: options?.classNames, orderNumber: String(index) }));
-    });
+    if (configurationArray.length) {
+		configurationArray.forEach((configuration, index) => {
+			result.push(new Component(options?.tagName ? options.tagName : 'div', { ...configuration, classNames: options?.classNames, orderNumber: String(index) }));
+		});
+	}
 
     return result;
 }

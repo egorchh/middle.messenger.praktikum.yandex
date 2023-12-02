@@ -10,7 +10,7 @@ export class UserService {
 			store.set('user.loading', true)
 			store.set('user.error', false);
 			const response = await userApi.changeProfileData(data);
-			store.set('user.data', response);
+			store.set('user', response);
 			router.go(Routes.Profile);
 		} catch (error) {
 			store.set('user.error', error);

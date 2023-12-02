@@ -48,6 +48,6 @@ export class AuthService {
 
 	static async fetchUser() {
 		const user = await authApi.getUserInfo();
-		store.set('user.data', user as UserInfo);
+		store.set('user', user as UserInfo);
 	}
 }

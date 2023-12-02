@@ -1,9 +1,8 @@
-import Component, { Props } from '../../core/component';
+import Component, { Props } from '../../../../core/component';
 import { template } from './template';
 import crossIcon from './assets/cross-icon.svg';
 import searchIcon from './assets/search-icon.svg';
-import { ButtonComponent } from '../button';
-import InputFieldComponent from '../input-field';
+import { ButtonComponent, InputFieldComponent } from '../../../../components';
 
 export type SearchBarComponentProps = {
     iconSize?: number;
@@ -31,7 +30,7 @@ const crossButton = new ButtonComponent('button', {
     }
 })
 
-export class SearchBarComponent extends Component  {
+class SearchBarComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: SearchBarComponentProps) {
         tagName = 'label';
 
@@ -59,3 +58,5 @@ export class SearchBarComponent extends Component  {
         return this.compile(template)
     }
 }
+
+export default SearchBarComponent;

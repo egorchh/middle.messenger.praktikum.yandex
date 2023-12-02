@@ -2,27 +2,25 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import InputFieldComponent from '../input-field';
 import { validateTargetValue } from '../../utils/validation';
-import { UserInfo } from '../../types';
 
 export type InputComponentProps = {
     id: string;
-    placeholder: string;
-    type: HTMLInputElement['type'];
-    name: keyof UserInfo;
+    placeholder?: string;
+    type?: HTMLInputElement['type'];
+    name?: string;
     value?: string;
     error?: string;
     disable?: boolean;
     variant?: 'normal' | 'profile';
     onBlur?: (event: Event) => void;
     inputField?: typeof InputFieldComponent;
-	data: UserInfo
 } & Props;
 
 class InputComponent extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: InputComponentProps) {
         const classNamesFromProps = props.classNames ? [ ...props.classNames ] : [];
 
-        const { error, name, placeholder, type, id, variant, value } = props;
+        const { error, name, placeholder, type = 'text', id, variant, value } = props;
 
         const classVariant = variant === 'profile' ? 'profile-' : '';
 
@@ -34,8 +32,8 @@ class InputComponent extends Component {
                 attributes: {
                     type,
                     id,
-                    placeholder,
-                    name,
+                    placeholder: placeholder || '',
+                    name: name || '',
                     value: value || ''
                 },
                 variant: props.variant,

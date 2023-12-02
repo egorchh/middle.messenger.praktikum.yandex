@@ -48,7 +48,7 @@ export default class HTTPTransport {
 			const xhr = new XMLHttpRequest();
 
 			if (method === METHODS.GET && data) {
-				xhr.open(method, `${url}${queryString(data)}`);
+				xhr.open(method, `${url}?${queryString(data)}`);
 			} else if (method) {
 				xhr.open(method, url);
 			}

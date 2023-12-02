@@ -1,7 +1,6 @@
-import Component, { Props } from '../../core/component';
+import Component, { Props } from '../../../../core/component';
 import { template } from './template';
-import { ButtonComponent } from '../button';
-import InputFieldComponent from '../input-field';
+import { ButtonComponent, InputFieldComponent } from '../../../../components';
 import emojiIcon from './assets/emoji.svg';
 import airplaneIcon from './assets/paper-airplane.svg';
 import paperclipIcon from './assets/paperclip.svg';
@@ -69,7 +68,7 @@ const inputField = new InputFieldComponent('input', {
     classNames: [ 'chat-form_input' ]
 })
 
-export class MessageInputComponent extends Component  {
+class MessageInputComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: MessageInputComponentProps) {
         tagName = 'div';
 
@@ -86,3 +85,5 @@ export class MessageInputComponent extends Component  {
         return this.compile(template);
     }
 }
+
+export default MessageInputComponent;

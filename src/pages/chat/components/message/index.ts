@@ -1,6 +1,6 @@
-import Component, { Props } from '../../core/component';
+import Component, { Props } from '../../../../core/component';
 import { template } from './template';
-import AvatarComponent  from '../avatar';
+import { AvatarComponent }  from '../../../../components';
 
 export type MessageComponentProps = {
     variant?: 'own';
@@ -11,7 +11,24 @@ export type MessageComponentProps = {
     time: string;
 } & Props
 
-export class MessageComponent extends Component  {
+// export interface MessageData {
+// 	chat_id: number;
+// 	content: string;
+// 	file?: {
+// 		content_size: number;
+// 		content_type: string;
+// 		filename: string;
+// 		id: number;
+// 		path: string;
+// 		upload_date: string;
+// 		user_id: number;
+// 	};
+// 	time: string;
+// 	type: string;
+// 	user_id: string;
+// }
+
+class MessageComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: MessageComponentProps) {
         tagName = 'li';
 
@@ -32,3 +49,5 @@ export class MessageComponent extends Component  {
         return this.compile(template);
     }
 }
+
+export default MessageComponent;

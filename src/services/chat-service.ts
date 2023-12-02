@@ -17,13 +17,16 @@ export class ChatService {
 		try {
 			const chats = await chatsApi.getChats({ limit: 50 });
 
-			chats.map(async (chat: Chat) => {
-				const { token } = await this.getToken(chat.id);
-				await MessagesService.connect(chat.id, token);
-			});
+			if (chats.length) {
+				chats.map(async (chat: Chat) => {
+					const { token } = await this.getToken(chat.id);
+					await MessagesService.connect(chat.id, token);
+				});
+			}
 
 			store.set('chats', chats);
 		} catch (error) {
+			console.log(error);
 			store.set('chats.error', error);
 		}
 	}

@@ -33,7 +33,7 @@ class AvatarComponent extends Component  {
 const mapStateToProps = (state: any, props: AvatarComponentProps) => {
 	const avatars: Record<string, string> = {}
 
-	const userAvatar = `${BASE_RESOURCES_URL}${state.user.data.avatar}`;
+	const userAvatar = `${BASE_RESOURCES_URL}${state.user.avatar}`;
 
 	if (userAvatar) {
 		avatars['user'] = userAvatar;

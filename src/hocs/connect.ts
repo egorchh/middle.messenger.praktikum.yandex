@@ -1,8 +1,9 @@
 import store, { StoreEvents } from '../core/store';
 import Block from '../core/component';
 import { isDeepEqual } from '../utils/mydash';
+import { GlobalStateType } from '../types';
 
-export const connect = (Component: typeof Block, mapStateToProps?: ((state: unknown, props?: any) => any)) => {
+export const connect = (Component: typeof Block, mapStateToProps?: ((state: GlobalStateType, props?: any) => any)) => {
 	return class extends Component {
 		constructor(tagName: keyof HTMLElementTagNameMap | null | undefined, props: object = {}) {
 			const state = mapStateToProps ? mapStateToProps(store.getState(), props) : store.getState();

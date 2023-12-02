@@ -24,6 +24,8 @@ export function merge(lhs: Indexed, rhs: Indexed, mutant?: boolean): Indexed {
 	for (const key in rhs) {
 		if (!(key in rhs)) {
 			lhs[key] = rhs[key];
+		} else if (Array.isArray(rhs[key])) {
+			lhs[key] = rhs[key];
 		} else if (typeof lhs[key] === 'object' && typeof rhs[key] === 'object') {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore

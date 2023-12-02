@@ -1,5 +1,6 @@
 // language=hbs
 export const template = `
-    {{{ button }}}
+    {{{ closeButton }}}
     {{{ content }}}
+    {{{ button }}}
 `;

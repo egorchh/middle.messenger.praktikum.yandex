@@ -1,10 +1,10 @@
 // language=hbs
 export const template = `
     <div class="friend-component">
-        {{{ avatar }}}
+        {{{ avatarComponent }}}
         <div class="friend-component_info">
-            <p class="friend-component_info-name">{{ name }}</p>
-            <p class="friend-component_info-description">{{ lastMessage }}</p>
+            <p class="friend-component_info-name">{{  title  }}</p>
+            <p class="friend-component_info-description">{{ last_message }}</p>
         </div>
         {{# if numberOfUnreadMessages}}
             <div class="friend-component_unread-message">

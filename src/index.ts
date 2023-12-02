@@ -36,24 +36,28 @@ window.addEventListener('DOMContentLoaded', async () => {
 		.use(Routes.ChangeData, ChangeDataPage)
 		.use(Routes.Chat, ChatPage)
 
-	try {
+	// try {
 		await AuthService.fetchUser();
 
-		const currentPath = sessionStorage.getItem('sessionRoute');
+		// const currentPath = sessionStorage.getItem('sessionRoute');
+		//
+		// if (currentPath) {
+		// 	sessionStorage.removeItem('sessionRoute');
+		// }
 
-		if (currentPath) {
-			sessionStorage.removeItem('sessionRoute');
-		}
-
-		const userData = store.getState('user.data');
+		const userData = store.getState('user');
 		const inAuthorized = Object.keys(userData).length && !Object.keys(userData).includes('reason');
 
 		if (inAuthorized) {
-			router.go(currentPath || Routes.Chat);
+			router.go(
+				// currentPath ||
+				Routes.Chat
+			);
 		} else {
 			router.go(Routes.SignIn);
 		}
-	} catch (error) {
-		router.go(Routes.SignIn);
-	}
+	// } catch (error) {
+	// 	console.log(error);
+	// 	router.go(Routes.SignIn);
+	// }
 });

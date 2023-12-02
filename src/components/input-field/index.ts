@@ -63,7 +63,7 @@ const mapStateToProps = (state: any, props: InputComponentProps) => {
 		...props,
 		attributes: {
 			...props.attributes,
-			value: (state.user?.data && typeof state.user?.data[props.attributes?.name as string] !== 'object') ? state.user.data[props.attributes?.name as string] : undefined
+			value: (state?.user && typeof state?.user[props.attributes?.name as string] !== 'object') ? state?.user[props.attributes?.name as string] : undefined
 		}
 	}
 };

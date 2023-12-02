@@ -16,9 +16,7 @@ export type GlobalStateType = {
 	currentMessages?: MessageData[];
 	messages?: Record<number, MessageData[]>;
 	selectedChat?: Chat[] | null;
-	user?: {
-		data: UserInfo
-	};
+	user?: UserInfo;
 }
 
 // auth-api
