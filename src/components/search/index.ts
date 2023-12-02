@@ -3,14 +3,14 @@ import { template } from './template';
 import crossIcon from './assets/cross-icon.svg';
 import searchIcon from './assets/search-icon.svg';
 import { ButtonComponent } from '../button';
-import { InputFieldComponent } from '../input-field';
+import InputFieldComponent from '../input-field';
 
 export type SearchBarComponentProps = {
     iconSize?: number;
     searchIconSrc?: string;
     value?: string;
     placeholder?: string;
-    inputField?: InputFieldComponent;
+    inputField?: typeof InputFieldComponent;
     crossButton?: ButtonComponent;
     onBlur?: (event: Event | undefined) => void;
 } & Props;

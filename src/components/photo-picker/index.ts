@@ -2,8 +2,9 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { ButtonComponent } from '../button';
 import { LinkComponent } from '../link';
-import { InputFieldComponent } from '../input-field';
+import InputFieldComponent from '../input-field';
 import removeFromDOM from '../../core/utilities/removeFromDOM';
+import { UserService } from '../../services/user-service';
 
 export type PhotoPickerComponentProps = {
     title?: string
@@ -15,17 +16,25 @@ export type PhotoPickerComponentProps = {
 const button = new ButtonComponent('div', {
     text: 'Подтвердить выбор',
     classNames: [ 'photo-picker-component_button' ],
-    onClick: (event: Event | undefined) => {
+    onClick: async (event: Event | undefined) => {
         event?.preventDefault();
+		const formData = new FormData();
 
-        const imagePlaceholder = document.querySelector('.photo-picker-component_placeholder') as HTMLImageElement;
+        const imageInput = document.getElementById('photo-picker_input') as HTMLInputElement;
 
-        if (imagePlaceholder.src) {
-            sessionStorage.setItem('avatarSrc', imagePlaceholder.src)
-        }
+		if (imageInput.files && imageInput.files?.length) {
+			const file = imageInput.files[0];
+			formData.append('avatar', file);
 
-        removeFromDOM('modal');
-        location.reload(); // TODO: доработать/переработать всю логику выгрузки фотографии
+			try {
+				await UserService.changeAvatar(formData);
+				removeFromDOM('modal');
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+        // location.reload(); // TODO: доработать/переработать всю логику выгрузки фотографии
     }
 })
 
@@ -57,7 +66,7 @@ const inputField = new InputFieldComponent('input', {
     }
 });
 
-export class PhotoPickerComponent extends Component  {
+class PhotoPickerComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: PhotoPickerComponentProps) {
         tagName = 'div';
 
@@ -75,3 +84,5 @@ export class PhotoPickerComponent extends Component  {
         return this.compile(template)
     }
 }
+
+export default PhotoPickerComponent;

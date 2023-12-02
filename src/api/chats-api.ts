@@ -1,5 +1,5 @@
 import { BaseApi } from './base-api';
-import { GetChatsRequestData } from '../types';
+import { Chat, ChatUser, GetChatsRequestData } from '../types';
 
 class ChatsApi extends BaseApi {
 	constructor() {
@@ -8,8 +8,8 @@ class ChatsApi extends BaseApi {
 
 	// действия с сущностью чата
 
-	getChats(data: GetChatsRequestData) {
-		return this.http.get('', { data });
+	getChats(data: GetChatsRequestData): Promise<Chat[]> {
+		return this.http.get('', { data }) as Promise<Chat[]>;
 	}
 
 	addChat(title: string) {
@@ -30,8 +30,8 @@ class ChatsApi extends BaseApi {
 		return this.http.delete('/users', { data: { users, chatId } });
 	}
 
-	getUsersFromChat(chatId: number) {
-		return this.http.get(`/${chatId}/users`);
+	getUsersFromChat(chatId: number): Promise<ChatUser[]> {
+		return this.http.get(`/${chatId}/users`) as Promise<ChatUser[]>;
 	}
 
 	// остальное
@@ -40,8 +40,8 @@ class ChatsApi extends BaseApi {
 		return this.http.put('/avatar', { data });
 	}
 
-	getToken(chatId: number) {
-		return this.http.post(`/token/${chatId}`);
+	getToken(chatId: number): Promise<{ token: string }> {
+		return this.http.post(`/token/${chatId}`) as Promise<{ token: string }>;
 	}
 }
 

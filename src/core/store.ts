@@ -1,18 +1,14 @@
 import EventBus from './event-bus';
 import { set } from '../utils/mydash';
 import { getStateFromPath } from '../utils/mydash/getStateFromPath';
-
-type State = {
-	[key: string]: unknown
-	// TODO: расширяем стейт
-}
+import { GlobalStateType } from '../types';
 
 export enum StoreEvents {
 	Updated = 'updated',
 }
 
 class Store extends EventBus {
-	private _state: State = {};
+	private _state: GlobalStateType = {};
 	static _instance: Store;
 	static STORE_NAME = 'globalStore'
 
@@ -33,12 +29,12 @@ class Store extends EventBus {
 		})
 	}
 
-	getState(statePath?: string): State {
+	getState(statePath?: string): GlobalStateType {
 		if (!statePath) {
 			return this._state;
 		}
 
-		return getStateFromPath(this._state, statePath) as State;
+		return getStateFromPath(this._state, statePath) as GlobalStateType;
 	}
 
 	set(path: string, value: unknown) {

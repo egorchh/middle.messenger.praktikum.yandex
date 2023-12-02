@@ -9,6 +9,18 @@ export enum Routes {
 	Chat = '/'
 }
 
+// state
+
+export type GlobalStateType = {
+	chats?: Chat[];
+	currentMessages?: MessageData[];
+	messages?: Record<number, MessageData[]>;
+	selectedChat?: Chat[] | null;
+	user?: {
+		data: UserInfo
+	};
+}
+
 // auth-api
 
 export type SignupRequestData = {
@@ -59,7 +71,52 @@ export type SearchUserRequestData = {
 // chats-api
 
 export type GetChatsRequestData = {
-	offset: number;
-	limit: number;
+	offset?: number;
+	limit?: number;
+	title?: string;
+}
+
+export type Chat = {
+	avatar: string;
+	created_by: number;
+	id: number;
+	last_message: LastMessage;
 	title: string;
+	unread_count: number;
+}
+
+export interface ChatUser extends Omit<UserInfo, 'phone' | 'email'> {
+	role?: string;
+}
+
+// messages-api
+
+export type LastMessage = {
+	content: string;
+	time: string;
+	user: {
+		avatar: string;
+		email: string;
+		first_name: string;
+		login: string;
+		phone: string;
+		second_name: string;
+	};
+}
+
+export interface MessageData {
+	chat_id: number;
+	content: string;
+	file?: {
+		content_size: number;
+		content_type: string;
+		filename: string;
+		id: number;
+		path: string;
+		upload_date: string;
+		user_id: number;
+	};
+	time: string;
+	type: string;
+	user_id: string;
 }

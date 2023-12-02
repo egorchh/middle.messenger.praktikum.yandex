@@ -27,13 +27,13 @@ class EventBus {
         );
     }
 
-    emit(event: string, ...args: Array<Props>) {
+    emit(event: string, ...args: Array<Props | Event>) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
         this.listeners[event].forEach(function(listener) {
-            listener(...args);
+            listener(...args as Array<Props>);
         });
     }
 }

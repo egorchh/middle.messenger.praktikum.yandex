@@ -1,7 +1,7 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { ButtonComponent } from '../button';
-import { InputFieldComponent } from '../input-field';
+import InputFieldComponent from '../input-field';
 import emojiIcon from './assets/emoji.svg';
 import airplaneIcon from './assets/paper-airplane.svg';
 import paperclipIcon from './assets/paperclip.svg';
@@ -10,7 +10,7 @@ import paperclipIcon from './assets/paperclip.svg';
 export type MessageInputComponentProps = {
     emojiIconButton?: ButtonComponent;
     paperclipIconButton?: ButtonComponent;
-    inputField?: InputFieldComponent;
+    inputField?: typeof InputFieldComponent;
     sendIconButton?: ButtonComponent;
 } & Props;
 

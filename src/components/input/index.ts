@@ -1,8 +1,7 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
-import { InputFieldComponent } from '../input-field';
+import InputFieldComponent from '../input-field';
 import { validateTargetValue } from '../../utils/validation';
-import { connect } from '../../hocs/connect';
 import { UserInfo } from '../../types';
 
 export type InputComponentProps = {
@@ -15,7 +14,7 @@ export type InputComponentProps = {
     disable?: boolean;
     variant?: 'normal' | 'profile';
     onBlur?: (event: Event) => void;
-    inputField?: InputFieldComponent;
+    inputField?: typeof InputFieldComponent;
 	data: UserInfo
 } & Props;
 
@@ -77,10 +76,4 @@ class InputComponent extends Component {
     }
 }
 
-const mapStateToProps = (state: any, props: InputComponentProps) => {
-	return {
-		value: (state.user?.data && typeof state.user?.data[props.name] !== 'object') ? state.user.data[props.name] : undefined
-	}
-};
-
-export default connect(InputComponent, mapStateToProps);
+export default InputComponent;

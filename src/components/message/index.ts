@@ -1,10 +1,10 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
-import { AvatarComponent } from '../avatar';
+import AvatarComponent  from '../avatar';
 
 export type MessageComponentProps = {
     variant?: 'own';
-    avatar: AvatarComponent;
+    avatar: typeof AvatarComponent;
     username: string;
     text: string;
     photoSrc: string;

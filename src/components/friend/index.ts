@@ -1,11 +1,11 @@
 import Component, { Props } from '../../core/component';
 import { template } from './template';
-import { AvatarComponent } from '../avatar';
+import AvatarComponent from '../avatar';
 
 export type FriendComponentProps = {
     stub: boolean;
     avatarSize: number;
-    avatar: AvatarComponent;
+    avatar: typeof AvatarComponent;
     name: string;
     lastMessage: string;
     numberOfUnreadMessages: number;

@@ -124,36 +124,54 @@ export default class Component {
         return !isDeepEqual(oldProps, newProps);
     }
 
-    setProps = (nextProps: Props) => {
+    setProps(nextProps: Props) {
         if (!Object.keys(nextProps).length) {
             return;
         }
 
+		let propsChanged = false,
+			childrenChanged = false,
+			listsChanged = false;
+
         this._setUpdate = false;
 
-        const prevValue = { ...this._props };
+        const prevProps = { ...this._props };
+        const prevChildren = { ...this._children };
+        const prevLists = { ...this._lists };
 
         const { children, props, lists } = this._getChildrenAndProps(nextProps);
 
-		console.log(children, props, lists);
-
-        if (Object.values(children).length) {
+        if (Object.keys(children).length) {
+			childrenChanged = true;
             Object.assign(this._children, children);
         }
 
-        if (Object.values(lists).length) {
+        if (Object.keys(lists).length) {
+			listsChanged = true;
             Object.assign(this._lists, lists);
         }
 
-        if (Object.values(props).length) {
+        if (Object.keys(props).length) {
+			propsChanged = true;
             Object.assign(this._props, props);
         }
 
         if (this._setUpdate) {
-            this._eventBus.emit(Component.EVENTS.FLOW_CDU, prevValue, this._props);
-            this._setUpdate = true;
+            if (propsChanged) {
+				this._eventBus.emit(Component.EVENTS.FLOW_CDU, prevProps, this._props);
+			}
+
+			if (childrenChanged) {
+				this._eventBus.emit(Component.EVENTS.FLOW_CDU, prevChildren, this._children);
+			}
+
+            if (listsChanged) {
+				this._eventBus.emit(Component.EVENTS.FLOW_CDU, prevLists, this._lists);
+			}
+
+            this._setUpdate = false;
         }
-    };
+    }
 
     get element() {
         return this._element;

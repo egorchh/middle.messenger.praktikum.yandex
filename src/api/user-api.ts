@@ -15,7 +15,7 @@ class UserApi extends BaseApi {
 	}
 
 	changeUserAvatar(data: FormData) {
-		return this.http.put('/avatar', { data });
+		return this.http.put('/profile/avatar', { data });
 	}
 
 	changeUserPassword(data: ChangePasswordRequestData) {
