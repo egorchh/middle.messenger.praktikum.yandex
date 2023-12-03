@@ -9,7 +9,7 @@ export const template = `
                 {{ username }}
             </p>
             <p class="{{#if variant}}{{ variant }}{{else}}friend{{/if}}-message-component_bubble-text">
-                {{ text }}
+                {{ content }}
             </p>
             {{#if photoSrc}}
                 <img class="message_photo" src="{{ photoSrc }}" alt="Изображение: Фото в чате"/>

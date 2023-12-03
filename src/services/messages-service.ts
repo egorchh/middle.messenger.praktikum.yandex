@@ -1,7 +1,7 @@
 import { WebSocketEvents, WSTransport } from '../core/ws-transport';
 import store from '../core/store';
 import { ChatService } from './chat-service';
-import { Props } from '../core/component';
+import { MessageData } from '../types';
 
 export class MessagesService {
 	private static transports: Map<number, WSTransport> = new Map();
@@ -46,25 +46,19 @@ export class MessagesService {
 		});
 	}
 
-	static handleMessages(messages: Props, chatId: number) {
+	static handleMessages(messages: MessageData | MessageData[], chatId: number) {
 		const incomingMessages = Array.isArray(messages) ? messages.reverse() : [ messages ];
 		const currentMessages = store.getState().messages?.[chatId] ?? [];
-		const allMessages = [ ...currentMessages, ...incomingMessages ].filter((message) => message.type === 'message');
-		store.set(`messages.${chatId}`, allMessages);
-		if (!Array.isArray(messages)) {
-			this.findMessages(chatId);
-		}
+
+		store.set(`messages.${chatId}`, [ ...currentMessages, ...incomingMessages ], true);
 
 		ChatService.fetchChatsList();
 	}
 
-	static findMessages(chatId: number) {
-		const messages = store.getState().messages?.[chatId];
-		store.set('currentMessages', messages);
-	}
-
 	static subscribe(transport: WSTransport, chatId: number) {
 		transport.on(WebSocketEvents.Message, (data) => {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
 			this.handleMessages(data, chatId);
 		});
 	}

@@ -49,7 +49,7 @@ const mapStateToProps = (state: GlobalStateType, props: FriendComponentProps) =>
 	return {
 		...chat,
 		stub: !!chat?.avatar,
-		last_message: (chat?.last_message && typeof chat.last_message !== 'object') ? chat.last_message : EMPTY_MESSAGE_TEXT,
+		last_message: chat?.last_message?.content || EMPTY_MESSAGE_TEXT,
 		numberOfUnreadMessages: chat?.unread_count
 	}
 }

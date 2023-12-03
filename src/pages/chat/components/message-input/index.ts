@@ -4,6 +4,9 @@ import { ButtonComponent, InputFieldComponent } from '../../../../components';
 import emojiIcon from './assets/emoji.svg';
 import airplaneIcon from './assets/paper-airplane.svg';
 import paperclipIcon from './assets/paperclip.svg';
+import { MessagesService } from '../../../../services/messages-service';
+import { connect } from '../../../../hocs/connect';
+import { GlobalStateType } from '../../../../types';
 
 
 export type MessageInputComponentProps = {
@@ -11,6 +14,7 @@ export type MessageInputComponentProps = {
     paperclipIconButton?: ButtonComponent;
     inputField?: typeof InputFieldComponent;
     sendIconButton?: ButtonComponent;
+	chatId?: number;
 } & Props;
 
 const emojiIconButton = new ButtonComponent('button', {
@@ -37,27 +41,6 @@ const paperclipIconButton = new ButtonComponent('button', {
     }
 });
 
-const sendIconButton = new ButtonComponent('button', {
-    iconButton: true,
-    src: airplaneIcon,
-    iconSize: 24,
-    type: 'submit',
-    alt: 'Отправить сообщение',
-    imageClass: 'chat-form_submit-icon',
-    classNames: [ 'chat-form_submit' ],
-    onClick: (event?: Event) => {
-        event?.preventDefault();
-
-        const input = document.getElementById('send-message-input') as HTMLInputElement;
-
-        if (input.value) {
-            console.log(input.value);
-        }
-
-        input.value = '';
-    }
-});
-
 const inputField = new InputFieldComponent('input', {
     attributes: {
         id: 'send-message-input',
@@ -76,7 +59,27 @@ class MessageInputComponent extends Component  {
             ...props,
             emojiIconButton,
             paperclipIconButton,
-            sendIconButton,
+            sendIconButton: new ButtonComponent('button', {
+				iconButton: true,
+				src: airplaneIcon,
+				iconSize: 24,
+				type: 'submit',
+				alt: 'Отправить сообщение',
+				imageClass: 'chat-form_submit-icon',
+				classNames: [ 'chat-form_submit' ],
+				onClick: async () => {
+					const input = document.getElementById('send-message-input') as HTMLInputElement;
+
+					if (input.value && props.chatId) {
+						try {
+							await MessagesService.sendMessage(props.chatId, input.value);
+							input.value = '';
+						} catch (error) {
+							console.log('send message error', error)
+						}
+					}
+				}
+			}),
             inputField
         })
     }
@@ -86,4 +89,11 @@ class MessageInputComponent extends Component  {
     }
 }
 
-export default MessageInputComponent;
+const mapStateToProps = (state: GlobalStateType, props: MessageInputComponentProps) => {
+	return {
+		...props,
+		chatId: state.selectedChat?.[0].id
+	}
+}
+
+export default connect(MessageInputComponent, mapStateToProps);

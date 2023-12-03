@@ -26,6 +26,8 @@ window.addEventListener('popstate', () => {
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
+	store.removeState();
+
 	router
 		.use(Routes.Error500, Error500Page)
 		.use(Routes.Error400, Error400Page)

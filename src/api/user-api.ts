@@ -22,8 +22,8 @@ class UserApi extends BaseApi {
 		return this.http.put('/password', { data });
 	}
 
-	getUserById() {
-		// optional
+	getUserById(userID: number) {
+		return this.http.get(`/${userID}`);
 	}
 
 	searchForUsers(data: SearchUserRequestData) {

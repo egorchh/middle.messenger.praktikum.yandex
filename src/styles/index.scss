@@ -19,6 +19,7 @@
 @import "../components/button/button.scss";
 @import "../components/avatar/avatar.scss";
 @import "../components/link/link.scss";
+@import "../components/text/text.scss";
 @import "../pages/chat/components/search/search.scss";
 @import "../pages/chat/components/friend/friend.scss";
 @import "../pages/chat/components/sheet/sheet.scss";
@@ -140,4 +141,8 @@
 
 .mt-15 {
 	margin-top: 15px;
+}
+
+.mt-10 {
+	margin-top: 10px;
 }

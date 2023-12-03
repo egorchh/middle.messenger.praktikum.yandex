@@ -1,18 +1,19 @@
 import Component from '../../core/component';
 import { template } from './template';
 import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
-import { chatData } from './model/props';
 import { ChatService } from '../../services/chat-service';
 import store from '../../core/store';
-import { Chat, UserInfo } from '../../types';
+import { Chat, GlobalStateType, MessageData, UserInfo } from '../../types';
 import {
+	BottomSheetComponent,
 	ChatHeaderComponent,
 	FriendComponent,
-	MessageInputComponent,
-	SearchBarComponent,
 	MessageComponent,
-	BottomSheetComponent
+	MessageInputComponent,
+	SearchBarComponent
 } from './components';
+import { TextComponent } from '../../components/text';
+import { connect } from '../../hocs/connect';
 
 const searchBar = new SearchBarComponent('label', {
     onBlur: () => {
@@ -38,9 +39,7 @@ class ChatPage extends Component {
             classNames: [ 'page-grid' ],
             searchBar,
 			header: header,
-			chats: configureComponentsArray(FriendComponent, store.getState('chats') as Chat[], { classNames: [ 'sidebar_friends-person' ] }),
             bottomSheet,
-            messages: configureComponentsArray(MessageComponent, chatData.messages, { classNames: [ 'chat-body_message' ] }),
             messageInput
         });
     }
@@ -56,4 +55,45 @@ class ChatPage extends Component {
     }
 }
 
-export default ChatPage;
+const mapStateToProps = (state: GlobalStateType) => {
+	const currentChatID = state.selectedChat?.[0]?.id
+
+	const renderMessages = (messages?: MessageData[]) => {
+		if (messages === undefined || !messages.length) {
+			return new TextComponent('p', {
+				text: 'Время начать общение',
+				size: 'm',
+				variant: 'gray',
+				align: 'center',
+				classNames: [ 'mt-10' ]
+			})
+		}
+
+		return configureComponentsArray<MessageData>(MessageComponent, messages, { classNames: [ 'chat-body_message' ] });
+	};
+
+	const renderChats = (chats?: Chat[]) => {
+		if (chats === undefined || !chats?.length) {
+			return new TextComponent('p', {
+				text: 'Чаты еще не добавлены',
+				size: 'm',
+				variant: 'gray',
+				align: 'center',
+				classNames: [ 'mt-15' ]
+			})
+		}
+
+		return configureComponentsArray(
+			FriendComponent,
+			chats,
+			{ classNames: [ 'sidebar_friends-person' ] }
+		)
+	}
+
+	return {
+		messages: renderMessages(state.messages?.[currentChatID!]),
+		chats: renderChats(state.chats)
+	}
+};
+
+export default connect(ChatPage, mapStateToProps);

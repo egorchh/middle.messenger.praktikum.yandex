@@ -1,6 +1,9 @@
 import Component, { Props } from '../../../../core/component';
 import { template } from './template';
-import { AvatarComponent }  from '../../../../components';
+import { AvatarComponent } from '../../../../components';
+import { GlobalStateType } from '../../../../types';
+import { connect } from '../../../../hocs/connect';
+import { convertTimeToHoursAndMinutes } from '../../../../utils/mydash/convertTimeToHoursAndMinutes';
 
 export type MessageComponentProps = {
     variant?: 'own';
@@ -9,24 +12,8 @@ export type MessageComponentProps = {
     text: string;
     photoSrc: string;
     time: string;
+	user_id?: number;
 } & Props
-
-// export interface MessageData {
-// 	chat_id: number;
-// 	content: string;
-// 	file?: {
-// 		content_size: number;
-// 		content_type: string;
-// 		filename: string;
-// 		id: number;
-// 		path: string;
-// 		upload_date: string;
-// 		user_id: number;
-// 	};
-// 	time: string;
-// 	type: string;
-// 	user_id: string;
-// }
 
 class MessageComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: MessageComponentProps) {
@@ -35,7 +22,7 @@ class MessageComponent extends Component  {
         super(tagName, {
             ...props,
             username: props.username,
-            text: props.text,
+			content: props.content,
             photoSrc: props.photoSrc,
             time: props.time,
             avatar: new AvatarComponent('div', {
@@ -50,4 +37,15 @@ class MessageComponent extends Component  {
     }
 }
 
-export default MessageComponent;
+const mapStateToProps = (state: GlobalStateType, props: MessageComponentProps) => {
+	const messageAuthorId = props.user_id;
+	const userId = state.user?.id
+
+	return {
+		...props,
+		variant: messageAuthorId === userId ? 'own' : undefined,
+		time: convertTimeToHoursAndMinutes(props.time)
+	};
+}
+
+export default connect(MessageComponent, mapStateToProps);

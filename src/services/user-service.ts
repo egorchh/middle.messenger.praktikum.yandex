@@ -44,4 +44,12 @@ export class UserService {
 			store.set('user.loading', false);
 		}
 	}
+
+	static async getUserById(userId: number) {
+		try {
+			return await userApi.getUserById(userId);
+		} catch (error) {
+			console.log('Get user by id', error);
+		}
+	}
 }

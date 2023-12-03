@@ -37,8 +37,8 @@ class Store extends EventBus {
 		return getStateFromPath(this._state, statePath) as GlobalStateType;
 	}
 
-	set(path: string, value: unknown) {
-		set(this._state, path, value);
+	set(path: string, value: unknown, mutable?: boolean) {
+		set(this._state, path, value, mutable);
 
 		try {
 			this.emit(StoreEvents.Updated);

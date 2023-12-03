@@ -1,82 +1,84 @@
-import EventBus from '../core/event-bus.ts';
+import EventBus from './event-bus'
 
 export enum WebSocketEvents {
-	Close = 'close',
-	Connect = 'connected',
+	Connected = 'connected',
 	Error = 'error',
 	Message = 'message',
-	Open = 'open',
+	Close = 'close',
 }
 
 export class WSTransport extends EventBus {
-	private socket: WebSocket | null = null;
+	private socket: WebSocket | null = null
+	private pingInterval: number | NodeJS.Timeout = 0
 
-	private interval: NodeJS.Timeout | number = 0;
-
-	private readonly url: string;
-
-	constructor(url: string) {
-		super();
-		this.url = url;
+	constructor (private readonly url: string) {
+		super()
 	}
 
-	public connect() {
-		this.socket = new WebSocket(this.url);
-		this.addEventListeners(this.socket);
-		this.setPing();
-		return new Promise<void>((resolve) => {
-			this.on(WebSocketEvents.Connect, () => resolve());
-		});
+	public send (data: unknown): void {
+		if (!this.socket) {
+			throw new Error('Socket is not connected')
+		}
+
+		this.socket.send(JSON.stringify(data))
 	}
 
-	private setPing() {
-		this.interval = setInterval(() => {
-			this.send({ type: 'ping' });
-		}, 5000);
+	public async connect (): Promise<void> {
+		if (this.socket) {
+			throw new Error('The socket is already connected!')
+		}
+
+		this.socket = new WebSocket(this.url)
+		this.subscribe(this.socket)
+		this.setupPing()
+
+		await new Promise<void>((resolve, reject) => {
+			this.on(WebSocketEvents.Error, reject);
+			this.on(WebSocketEvents.Connected, () => {
+				this.off(WebSocketEvents.Error, reject);
+				resolve()
+			})
+		})
+	}
+
+	public close (): void {
+		this.socket?.close()
+	}
+
+	private setupPing (): void {
+		this.pingInterval = setInterval(() => {
+			this.send({ type: 'ping' })
+		}, 5000)
 
 		this.on(WebSocketEvents.Close, () => {
-			clearInterval(this.interval);
+			clearInterval(this.pingInterval)
 
-			this.interval = 0;
-		});
+			this.pingInterval = 0
+		})
 	}
 
-	public send(data: unknown) {
-		if (!this.socket) {
-			throw new Error('Сокет-соединение не установлено');
-		}
-		this.socket.send(JSON.stringify(data));
-	}
+	private subscribe (socket: WebSocket): void {
+		socket.addEventListener('open', () => {
+			this.emit(WebSocketEvents.Connected)
+		})
+		socket.addEventListener('close', () => {
+			this.emit(WebSocketEvents.Close)
+		})
 
-	private addEventListeners(socket: WebSocket) {
-		socket.addEventListener(WebSocketEvents.Open, () => {
-			this.emit(WebSocketEvents.Connect);
-		});
+		socket.addEventListener('error', (e) => {
+			this.emit(WebSocketEvents.Error, e)
+		})
 
-		socket.addEventListener(WebSocketEvents.Close, (event: CloseEvent) => {
-			if (event.wasClean) {
-				console.log('Соединение закрыто чисто', event.reason);
-			} else {
-				console.log('Обрыв соединения');
-			}
-			this.emit(WebSocketEvents.Close);
-		});
-
-		socket.addEventListener(WebSocketEvents.Message, (event: MessageEvent) => {
+		socket.addEventListener('message', (message) => {
 			try {
-				const data = JSON.parse(event.data);
-				if (data.type === 'pong') {
-					return;
+				const data = JSON.parse(message.data)
+				if (data.type && data.type === 'pong') {
+					return
 				}
-				this.emit(WebSocketEvents.Message, data);
+				this.emit(WebSocketEvents.Message, data)
 			} catch (error) {
-				console.log(error);
+				// ignore
 			}
-		});
-
-		socket.addEventListener(WebSocketEvents.Error, (event: Event) => {
-			console.log('Ошибка', event);
-			this.emit(WebSocketEvents.Error, event);
-		});
+		})
 	}
 }

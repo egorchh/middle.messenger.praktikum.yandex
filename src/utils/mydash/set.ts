@@ -4,7 +4,7 @@ type Indexed = {
 	[key: string]: unknown
 }
 
-export function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
+export function set(object: Indexed | unknown, path: string, value: unknown, mutableSecond?: boolean): Indexed | unknown {
 	if (typeof object !== 'object' || object === null) {
 		return object;
 	}
@@ -15,7 +15,7 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	//@ts-ignore
-	return merge(object, additionalObj, true);
+	return merge(object, additionalObj, true, mutableSecond);
 }
 
 export default set
