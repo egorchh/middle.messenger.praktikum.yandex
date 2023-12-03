@@ -1,8 +1,7 @@
 import Component from '../../../core/component';
 import { LinkComponent } from '../../../components';
 import { template } from '../template';
-import { navigate } from '../../../router/router';
-import { RouterPages } from '../../types';
+import { Routes } from '../../../types';
 
 export default class Error400Page extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
@@ -11,11 +10,9 @@ export default class Error400Page extends Component {
         super(tagName, {
 			code: '404',
 			text: 'Кажется вы попали не туда, вернитесь назад и попробуйте снова',
-			link: new LinkComponent('a', {
+			link: new LinkComponent('a',{
 				linkText: 'Назад к чатам',
-				onClick: () => {
-					navigate(RouterPages.CHAT);
-				}
+				path: Routes.Chat
 			}),
 			classNames: [ 'page-flex' ]
         });

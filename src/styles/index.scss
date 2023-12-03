@@ -19,10 +19,11 @@
 @import "../components/button/button.scss";
 @import "../components/avatar/avatar.scss";
 @import "../components/link/link.scss";
-@import "../components/search/search.scss";
-@import "../components/friend/friend.scss";
-@import "../components/sheet/sheet.scss";
-@import "../components/message/message.scss";
+@import "../components/text/text.scss";
+@import "../pages/chat/components/search/search.scss";
+@import "../pages/chat/components/friend/friend.scss";
+@import "../pages/chat/components/sheet/sheet.scss";
+@import "../pages/chat/components/message/message.scss";
 @import "../components/tooltip/tooltip.scss";
 @import "../components/popup/popup.scss";
 @import "../components/photo-picker/photo-picker.scss";
@@ -84,4 +85,64 @@
 
 .button {
     background: red;
+}
+
+// Временные стили для index.html
+
+.render-root {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 40px;
+	gap: 10px;
+}
+
+.render-root button {
+	font-family: Nunito, sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	background: none;
+	cursor: pointer;
+}
+
+.render-root button:hover {
+	color: var(--light-blue-color);
+}
+
+.render-root span {
+	color: var(--blue-color);
+	pointer-events: none;
+}
+
+.render-root h4 {
+	color: var(--primary-gray-color);
+	font-weight: 400;
+	margin-top: 6px;
+}
+
+.render-card {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px 20px 30px;
+	background: var(--secondary-bg-color);
+	border-radius: 10px;
+	width: 700px;
+}
+
+.render-card_pages {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 5px;
+}
+
+// Частные классы стилей
+
+.mt-15 {
+	margin-top: 15px;
+}
+
+.mt-10 {
+	margin-top: 10px;
 }

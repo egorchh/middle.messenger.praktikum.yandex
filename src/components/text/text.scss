@@ -1,0 +1,49 @@
+// Цветовой вариант
+
+.text-primary {
+	color: var(--black-color);
+}
+
+.text-accent {
+	color: var(--blue-color)
+}
+
+.text-gray {
+	color: var(--primary-gray-color)
+}
+
+.text-error {
+	color: var(--red-color)
+}
+
+// Размер
+
+.text-s {
+	font-size: 14px;
+}
+
+.text-m {
+	font-size: 16px;
+}
+
+.text-l {
+	font-size: 20px;
+}
+
+.text-xl {
+	font-size: 25px;
+}
+
+// Горизонтальное расположение
+
+.text-start {
+	text-align: start;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-end {
+	text-align: end;
+}

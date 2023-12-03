@@ -1,16 +1,9 @@
 import Component from '../../core/component';
 import { template } from './template';
 import { BackLinkComponent, ButtonComponent, FormComponent, InputComponent } from '../../components';
-import { configureComponentsArray } from '../../utils/configureComponentsArray';
-import contextMock from '../../__fixtures__/contextMock';
-import { navigate } from '../../router/router';
-import { RouterPages } from '../types';
-
-const backLink = new BackLinkComponent('a', {
-    onClick: () => {
-        navigate(RouterPages.PROFILE);
-    }
-});
+import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
+import { inputs } from './model/props';
+import { Routes } from '../../types';
 
 const button = new ButtonComponent('div', {
     type: 'submit',
@@ -27,16 +20,17 @@ export class ChangeDataPage extends Component {
 			form: new FormComponent('form', {
 				legend: 'Форма смены данных профиля',
 				fieldsetClass: '',
-				inputs: configureComponentsArray(InputComponent, contextMock['change-data'].inputs, { classNames: [ 'change-data-page_input' ] }),
+				inputs: configureComponentsArray(InputComponent, inputs, { classNames: [ 'change-data-page_input' ] }),
 				button,
 				attributes: {
 					name: 'change-password'
 				},
 				classNames: [ 'change-data-page_form', 'change-data-page_inputs' ],
 				variant: 'profile',
-				required: true
+				required: true,
+				flow: 'changeData'
 			}),
-            backLink
+            backLink: new BackLinkComponent({ path: Routes.Profile })
         });
     }
 

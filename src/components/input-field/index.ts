@@ -1,4 +1,6 @@
 import Component, { Props } from '../../core/component';
+import { connect } from '../../hocs/connect';
+import { InputComponentProps } from '../input';
 
 export type InputFieldComponentProps = {
     classNames?: Array<string | Record<string, boolean>>;
@@ -18,10 +20,10 @@ export type InputFieldComponentProps = {
     onInput?: (event?: Event) => void;
 } & Props;
 
-export class InputFieldComponent extends Component {
+class InputFieldComponent extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: InputFieldComponentProps) {
         const { attributes: { id, placeholder, type, name, value, accept } } = props;
-        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : []
+        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : [];
 
         super(tagName, {
             classNames: classNamesFromProps.concat([ `${props.variant === 'profile' ? 'profile-' : ''}input-component_field` ]),
@@ -55,3 +57,15 @@ export class InputFieldComponent extends Component {
         return this.compile('', this._props);
     }
 }
+
+const mapStateToProps = (state: any, props: InputComponentProps) => {
+	return {
+		...props,
+		attributes: {
+			...props.attributes,
+			value: (state?.user && typeof state?.user[props.attributes?.name as string] !== 'object') ? state?.user[props.attributes?.name as string] : undefined
+		}
+	}
+};
+
+export default connect(InputFieldComponent, mapStateToProps);

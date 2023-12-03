@@ -1,18 +1,10 @@
 import Component from '../../core/component';
 import { template } from './template';
 import { ButtonComponent, FormComponent, InputComponent, LinkComponent } from '../../components';
-import { navigate } from '../../router/router';
-import { RouterPages } from '../types';
-import { configureComponentsArray } from '../../utils/configureComponentsArray';
-import contextMock from '../../__fixtures__/contextMock';
-
-const link = new LinkComponent('div', {
-    linkText: 'Уже есть аккаунт?',
-    onClick: (event) => {
-        event?.preventDefault();
-        navigate(RouterPages.SIGN_IN);
-    }
-});
+import { configureComponentsArray } from '../../core/utilities/configureComponentsArray';
+import { Routes } from '../../types';
+import { connect } from '../../hocs/connect';
+import { inputs } from './model/props';
 
 const button = new ButtonComponent('div', {
     type: 'submit',
@@ -20,19 +12,23 @@ const button = new ButtonComponent('div', {
     classNames: [ 'registration-page_button' ]
 });
 
-export class SignUpPage extends Component {
+class SignUpPage extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
         tagName = 'main';
 
         super(tagName, {
-            link,
+            link: new LinkComponent('div', {
+				linkText: 'Уже есть аккаунт?',
+				path: Routes.SignIn
+			}),
 			form: new FormComponent('form', {
 				legend: 'Форма регистрации',
 				fieldsetClass: '',
-				inputs: configureComponentsArray(InputComponent, contextMock.signup.inputs, { classNames: [ 'registration-page_input' ] }),
+				inputs: configureComponentsArray(InputComponent, inputs, { classNames: [ 'registration-page_input' ] }),
 				button,
 				required: true,
-				variant: 'normal'
+				variant: 'normal',
+				flow: 'signup'
 			}),
             classNames: [ 'page-flex' ]
         })
@@ -42,3 +38,5 @@ export class SignUpPage extends Component {
         return this.compile(template);
     }
 }
+
+export default connect(SignUpPage);

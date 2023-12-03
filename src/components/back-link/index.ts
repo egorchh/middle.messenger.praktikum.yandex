@@ -1,13 +1,11 @@
-import Component, { Props } from '../../core/component';
+import Component from '../../core/component';
 import { template } from './template';
 import backIcon from './assets/back-icon.svg';
-
-export type BackLinkComponentProps = {
-    onClick?: (event?: Event) => void;
-} & Props
+import router from '../../core/router';
+import { Routes } from '../../types';
 
 export class BackLinkComponent extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null, props: BackLinkComponentProps) {
+	constructor({ path }: { path?: Routes }, tagName?: keyof HTMLElementTagNameMap | null) {
         tagName = 'a';
 
         super(tagName, {
@@ -15,7 +13,13 @@ export class BackLinkComponent extends Component {
             imageSrc: backIcon,
             classNames: [ 'link-component_back' ],
             events: {
-                click: props.onClick || function () {}
+                click: (event?: Event) => {
+					event?.preventDefault();
+
+					if (path) {
+						router.go(path);
+					}
+				}
             }
         })
     }

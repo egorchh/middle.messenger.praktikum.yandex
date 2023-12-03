@@ -1,8 +1,7 @@
 import Component from '../../../core/component';
-import { template } from '../template';
 import { LinkComponent } from '../../../components';
-import { navigate } from '../../../router/router';
-import { RouterPages } from '../../types';
+import { Routes } from '../../../types';
+import { template } from '../template';
 
 export default class Error500Page extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
@@ -13,9 +12,7 @@ export default class Error500Page extends Component {
 			text: 'Упс, кажется что-то пошло не так. Приходите позже',
 			link: new LinkComponent('a', {
 				linkText: 'Назад к чатам',
-				onClick: () => {
-					navigate(RouterPages.CHAT);
-				}
+				path: Routes.Chat
 			}),
 			classNames: [ 'page-flex' ]
         })
