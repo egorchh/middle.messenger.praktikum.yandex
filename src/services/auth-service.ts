@@ -37,7 +37,6 @@ export class AuthService {
 			store.set('user.error', false);
 			store.set('user.loading', true);
 			await authApi.logout();
-			store.removeState();
 			router.go(Routes.SignIn);
 		} catch (error) {
 			store.set('user.error', error);

@@ -1,12 +1,12 @@
 export enum Routes {
 	Error400 = '/400',
 	Error500 = '/500',
-	SignIn = '/auth',
-	SignUp = '/register',
-	Profile = '/profile',
+	SignIn = '/',
+	SignUp = '/sign-up',
+	Profile = '/settings',
 	ChangeData = '/change-data',
 	ChangePassword = '/change-password',
-	Chat = '/'
+	Chat = '/messenger'
 }
 
 // state
