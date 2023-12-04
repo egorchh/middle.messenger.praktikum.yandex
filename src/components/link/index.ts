@@ -1,4 +1,4 @@
-import Component, { Props } from '../../core/component';
+import Component from '../../core/component';
 import { Routes } from '../../types';
 import router from '../../core/router';
 
@@ -8,12 +8,10 @@ export type LinkComponentProps = {
     size?: 'l' | 'xl';
 	onClick?: (event?: Event) => void;
 	path: Routes;
-} & Props
+}
 
 export class LinkComponent extends Component  {
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-	constructor(tagName?: keyof HTMLElementTagNameMap | null, props: LinkComponentProps) {
+	constructor(tagName: keyof HTMLElementTagNameMap | null, props: LinkComponentProps) {
         tagName = 'a';
 
         const { variant = 'primary', size = 'l' } = props;

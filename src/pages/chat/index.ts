@@ -14,6 +14,7 @@ import {
 } from './components';
 import { TextComponent } from '../../components/text';
 import { connect } from '../../hocs/connect';
+import { isEmpty } from '../../utils/mydash';
 
 const searchBar = new SearchBarComponent('label', {
     onBlur: () => {
@@ -29,7 +30,7 @@ const messageInput = new MessageInputComponent('div', {
     classNames: [ 'chat-form' ]
 });
 
-const header = new ChatHeaderComponent('div')
+const header = new ChatHeaderComponent('div', {})
 
 class ChatPage extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null) {
@@ -38,7 +39,7 @@ class ChatPage extends Component {
         super(tagName, {
             classNames: [ 'page-grid' ],
             searchBar,
-			header: header,
+			header,
             bottomSheet,
             messageInput
         });
@@ -59,21 +60,21 @@ const mapStateToProps = (state: GlobalStateType) => {
 	const currentChatID = state.selectedChat?.[0]?.id
 
 	const renderMessages = (messages?: MessageData[]) => {
-		if (messages === undefined || !messages.length) {
-			return new TextComponent('p', {
+		if (messages === undefined || isEmpty(messages)) {
+			return [ new TextComponent('p', {
 				text: 'Время начать общение',
 				size: 'm',
 				variant: 'gray',
 				align: 'center',
 				classNames: [ 'mt-10' ]
-			})
+			}) ];
 		}
 
 		return configureComponentsArray<MessageData>(MessageComponent, messages, { classNames: [ 'chat-body_message' ] });
 	};
 
 	const renderChats = (chats?: Chat[]) => {
-		if (chats === undefined || !chats?.length) {
+		if (chats === undefined || isEmpty(chats)) {
 			return new TextComponent('p', {
 				text: 'Чаты еще не добавлены',
 				size: 'm',

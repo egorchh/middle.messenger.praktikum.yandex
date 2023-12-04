@@ -7,7 +7,7 @@ import { ChatService } from '../../../../services/chat-service';
 
 export type FriendComponentProps = {
     stub: boolean;
-    avatarSize: number;
+    avatarSize?: number;
     avatar: typeof AvatarComponent;
 	orderNumber?: number;
 } & Chat & Props;
@@ -54,4 +54,6 @@ const mapStateToProps = (state: GlobalStateType, props: FriendComponentProps) =>
 	}
 }
 
-export default connect(FriendComponent, mapStateToProps);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default connect<FriendComponentProps>(FriendComponent, mapStateToProps);

@@ -15,7 +15,7 @@ export type GlobalStateType = {
 	chats?: Chat[];
 	currentMessages?: MessageData[];
 	messages?: Record<number, MessageData[]>;
-	selectedChat?: Chat[] | null;
+	selectedChat?: Chat[];
 	user?: UserInfo;
 }
 
@@ -81,6 +81,7 @@ export type Chat = {
 	last_message: LastMessage;
 	title: string;
 	unread_count: number;
+	members?: ChatUser[]
 }
 
 export interface ChatUser extends Omit<UserInfo, 'phone' | 'email'> {

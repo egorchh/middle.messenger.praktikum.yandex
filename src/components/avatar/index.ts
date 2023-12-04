@@ -1,16 +1,17 @@
-import Component, { Props } from '../../core/component';
+import Component from '../../core/component';
 import { template } from './template';
 import { connect } from '../../hocs/connect';
 import { BASE_RESOURCES_URL } from '../../constants';
+import { GlobalStateType } from '../../types';
 
 export type AvatarComponentProps = {
     stub?: boolean;
     stubSrc?: string;
-    size: number;
+    size?: number;
     src?: string;
 	flow?: 'user';
     onClick?: (event?: Event) => void;
-} & Props
+}
 
 class AvatarComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: AvatarComponentProps) {
@@ -30,10 +31,10 @@ class AvatarComponent extends Component  {
     }
 }
 
-const mapStateToProps = (state: any, props: AvatarComponentProps) => {
+const mapStateToProps = (state: GlobalStateType, props: AvatarComponentProps) => {
 	const avatars: Record<string, string> = {}
 
-	const userAvatar = `${BASE_RESOURCES_URL}${state.user.avatar}`;
+	const userAvatar = `${BASE_RESOURCES_URL}${state.user?.avatar}`;
 
 	if (userAvatar) {
 		avatars['user'] = userAvatar;

@@ -63,6 +63,7 @@ export class ChatService {
 		const target: Chat | undefined = store.getState().chats?.find((chat) => chat.id === chatId);
 		store.set('selectedChat', [ target ]);
 		this.fetchUsersInChat(chatId);
+		this.fetchChatsList();
 	}
 
 	static async fetchUsersInChat(chatId: number) {

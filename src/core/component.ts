@@ -35,7 +35,7 @@ export default class Component {
     private _eventBus: EventBus;
     private _setUpdate: boolean;
 
-    constructor(tagName: keyof HTMLElementTagNameMap | null = 'div', propsAndChildren: Props = {}) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null = 'div', propsAndChildren: Props) {
         const { children, props, lists } = this._getChildrenAndProps(propsAndChildren);
 
         this._eventBus = new EventBus();
