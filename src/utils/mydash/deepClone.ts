@@ -6,7 +6,6 @@ export const deepClone = (obj: object, hash = new WeakMap()): unknown => {
 				[ key, deepClone(val, hash) ]))
 			: obj instanceof Date ? new Date(obj)
 				: obj instanceof RegExp ? new RegExp(obj.source, obj.flags)
-
 					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 					// @ts-ignore
 					: obj.constructor ? new obj.constructor()

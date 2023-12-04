@@ -13,16 +13,21 @@ import { configureComponentsArray } from '../../core/utilities/configureComponen
 import photoCameraImage from './assets/photo-plug.svg';
 import renderDOM from '../../core/utilities/render';
 import { inputs, links } from './model/props';
-import { Routes } from '../../types';
+import { GlobalStateType, Routes } from '../../types';
+import { connect } from '../../hocs/connect';
+
+type ProfilePageProps = {
+	username: string
+}
 
 class ProfilePage extends Component {
-    constructor(tagName: keyof HTMLElementTagNameMap | null) {
+    constructor(tagName: keyof HTMLElementTagNameMap | null, props: ProfilePageProps) {
         tagName = 'main';
 
         super(tagName, {
-            username: 'Егор',
-            classNames: [ 'page-flex' ],
-            avatar: new AvatarComponent('div', {
+			username: props.username,
+			classNames: [ 'page-flex' ],
+			avatar: new AvatarComponent('div', {
 				size: 100,
 				stubSrc: photoCameraImage,
 				flow: 'user',
@@ -45,9 +50,9 @@ class ProfilePage extends Component {
 				required: false,
 				variant: 'profile'
 			}),
-            links: configureComponentsArray(LinkComponent, links),
-            backLink: new BackLinkComponent({ path: Routes.Chat })
-        })
+			links: configureComponentsArray(LinkComponent, links),
+			backLink: new BackLinkComponent({ path: Routes.Chat })
+		})
     }
 
     render() {
@@ -55,4 +60,10 @@ class ProfilePage extends Component {
     }
 }
 
-export default ProfilePage;
+const mapStateToProps = (state: GlobalStateType) => {
+	return {
+		username: state.user?.first_name
+	}
+}
+
+export default connect(ProfilePage, mapStateToProps);

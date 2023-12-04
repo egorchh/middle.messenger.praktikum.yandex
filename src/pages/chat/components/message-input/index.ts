@@ -8,7 +8,6 @@ import { MessagesService } from '../../../../services/messages-service';
 import { connect } from '../../../../hocs/connect';
 import { GlobalStateType } from '../../../../types';
 
-
 export type MessageInputComponentProps = {
     emojiIconButton?: ButtonComponent;
     paperclipIconButton?: ButtonComponent;
@@ -59,27 +58,6 @@ class MessageInputComponent extends Component  {
             ...props,
             emojiIconButton,
             paperclipIconButton,
-            sendIconButton: new ButtonComponent('button', {
-				iconButton: true,
-				src: airplaneIcon,
-				iconSize: 24,
-				type: 'submit',
-				alt: 'Отправить сообщение',
-				imageClass: 'chat-form_submit-icon',
-				classNames: [ 'chat-form_submit' ],
-				onClick: async () => {
-					const input = document.getElementById('send-message-input') as HTMLInputElement;
-
-					if (input.value && props.chatId) {
-						try {
-							await MessagesService.sendMessage(props.chatId, input.value);
-							input.value = '';
-						} catch (error) {
-							console.log('send message error', error)
-						}
-					}
-				}
-			}),
             inputField
         })
     }
@@ -89,10 +67,33 @@ class MessageInputComponent extends Component  {
     }
 }
 
-const mapStateToProps = (state: GlobalStateType, props: MessageInputComponentProps) => {
+const mapStateToProps = (state: GlobalStateType) => {
+	const chatID = state.selectedChat?.[0].id;
+
 	return {
-		...props,
-		chatId: state.selectedChat?.[0].id
+		sendIconButton: new ButtonComponent('button', {
+			iconButton: true,
+			src: airplaneIcon,
+			iconSize: 24,
+			type: 'submit',
+			alt: 'Отправить сообщение',
+			imageClass: 'chat-form_submit-icon',
+			classNames: [ 'chat-form_submit' ],
+			onClick: async (event?: Event) => {
+				event?.preventDefault();
+				const input = document.getElementById('send-message-input') as HTMLInputElement;
+				console.log(chatID);
+
+				if (input.value && chatID) {
+					try {
+						await MessagesService.sendMessage(chatID, input.value);
+						input.value = '';
+					} catch (error) {
+						console.log('send message error', error)
+					}
+				}
+			}
+		})
 	}
 }
 

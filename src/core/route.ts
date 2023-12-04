@@ -36,7 +36,7 @@ class Route {
 
 	public render() {
 		if (!this._block) {
-			this._block = new this._blockClass();
+			this._block = new this._blockClass('div', {});
 			renderDOM(this._props.rootQuery, this._block);
 			return;
 		}

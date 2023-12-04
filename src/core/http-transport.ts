@@ -26,6 +26,12 @@ export default class HTTPTransport {
 	}
 
 	get: HTTPMethod = (url, options = {}) => {
+		const data = options?.data;
+
+		if (data) {
+			return this.request(`${this.path}${url}?${queryString(options.data as Record<string, unknown>)}`, { ...options, method: METHODS.GET }, options.timeout);
+		}
+
 		return this.request(`${this.path}${url}`, { ...options, method: METHODS.GET }, options.timeout);
 	};
 
@@ -47,9 +53,7 @@ export default class HTTPTransport {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 
-			if (method === METHODS.GET && data) {
-				xhr.open(method, `${url}?${queryString(data)}`);
-			} else if (method) {
+			if (method) {
 				xhr.open(method, url);
 			}
 

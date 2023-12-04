@@ -1,6 +1,7 @@
 import Component, { Props } from '../../core/component';
 import { connect } from '../../hocs/connect';
 import { InputComponentProps } from '../input';
+import { GlobalStateType, UserInfo } from '../../types';
 
 export type InputFieldComponentProps = {
     classNames?: Array<string | Record<string, boolean>>;
@@ -58,14 +59,16 @@ class InputFieldComponent extends Component {
     }
 }
 
-const mapStateToProps = (state: any, props: InputComponentProps) => {
+const mapStateToProps = (state: GlobalStateType, props: InputComponentProps) => {
 	return {
 		...props,
 		attributes: {
 			...props.attributes,
-			value: (state?.user && typeof state?.user[props.attributes?.name as string] !== 'object') ? state?.user[props.attributes?.name as string] : undefined
+			value: (state?.user && typeof state?.user[props.attributes?.name as keyof UserInfo] !== 'object') ? state?.user[props.attributes?.name as keyof UserInfo] : undefined
 		}
 	}
 };
 
-export default connect(InputFieldComponent, mapStateToProps);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default connect<InputComponentProps>(InputFieldComponent, mapStateToProps);

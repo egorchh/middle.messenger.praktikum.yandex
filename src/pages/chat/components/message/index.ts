@@ -6,7 +6,7 @@ import { connect } from '../../../../hocs/connect';
 import { convertTimeToHoursAndMinutes } from '../../../../utils/mydash/convertTimeToHoursAndMinutes';
 
 export type MessageComponentProps = {
-    variant?: 'own';
+    variant?: string;
     avatar: typeof AvatarComponent;
     username: string;
     text: string;
@@ -48,4 +48,4 @@ const mapStateToProps = (state: GlobalStateType, props: MessageComponentProps) =
 	};
 }
 
-export default connect(MessageComponent, mapStateToProps);
+export default connect<MessageComponentProps>(MessageComponent, mapStateToProps);
