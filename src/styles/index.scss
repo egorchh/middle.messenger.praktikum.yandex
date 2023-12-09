@@ -19,10 +19,11 @@
 @import "../components/button/button.scss";
 @import "../components/avatar/avatar.scss";
 @import "../components/link/link.scss";
-@import "../components/search/search.scss";
-@import "../components/friend/friend.scss";
-@import "../components/sheet/sheet.scss";
-@import "../components/message/message.scss";
+@import "../components/text/text.scss";
+@import "../pages/chat/components/search/search.scss";
+@import "../pages/chat/components/friend/friend.scss";
+@import "../pages/chat/components/sheet/sheet.scss";
+@import "../pages/chat/components/message/message.scss";
 @import "../components/tooltip/tooltip.scss";
 @import "../components/popup/popup.scss";
 @import "../components/photo-picker/photo-picker.scss";
@@ -134,4 +135,14 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 5px;
+}
+
+// Частные классы стилей
+
+.mt-15 {
+	margin-top: 15px;
+}
+
+.mt-10 {
+	margin-top: 10px;
 }

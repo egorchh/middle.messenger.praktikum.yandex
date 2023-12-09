@@ -2,10 +2,11 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { ButtonComponent } from '../button';
 import crossIcon from './assets/cross-icon.svg';
-import removeFromDOM from '../../utils/removeFromDOM';
+import removeFromDOM from '../../core/utilities/removeFromDOM';
 
 export type PopupComponentProps = {
     content?: unknown;
+	button?: unknown;
 } & Props;
 
 const crossButton = new ButtonComponent('button', {
@@ -27,7 +28,7 @@ export class PopupComponent extends Component  {
 
         super(tagName, {
             ...props,
-            button: crossButton,
+			closeButton: crossButton,
             classNames: [ 'popup' ]
         })
     }

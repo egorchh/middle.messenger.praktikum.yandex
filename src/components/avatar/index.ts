@@ -1,15 +1,19 @@
-import Component, { Props } from '../../core/component';
+import Component from '../../core/component';
 import { template } from './template';
+import { connect } from '../../hocs/connect';
+import { BASE_RESOURCES_URL } from '../../constants';
+import { GlobalStateType } from '../../types';
 
 export type AvatarComponentProps = {
     stub?: boolean;
     stubSrc?: string;
-    size: number;
+    size?: number;
     src?: string;
+	flow?: 'user';
     onClick?: (event?: Event) => void;
-} & Props
+}
 
-export class AvatarComponent extends Component  {
+class AvatarComponent extends Component  {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: AvatarComponentProps) {
         tagName = 'div';
 
@@ -26,3 +30,23 @@ export class AvatarComponent extends Component  {
         return this.compile(template);
     }
 }
+
+const mapStateToProps = (state: GlobalStateType, props: AvatarComponentProps) => {
+	const avatars: Record<string, string> = {}
+
+	const userAvatar = `${BASE_RESOURCES_URL}${state.user?.avatar}`;
+
+	if (userAvatar) {
+		avatars['user'] = userAvatar;
+	}
+
+	const shouldPlugBeRender = !Object.keys(avatars).length || !props.flow;
+
+	return {
+		...props,
+		stub: shouldPlugBeRender,
+		src: shouldPlugBeRender? undefined : avatars[props.flow || '']
+	}
+}
+
+export default connect(AvatarComponent, mapStateToProps)

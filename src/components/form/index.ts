@@ -2,6 +2,11 @@ import Component, { Props } from '../../core/component';
 import { template } from './template';
 import { ButtonComponent } from '../button';
 import { validateTargetValue } from '../../utils/validation';
+import { AuthService } from '../../services/auth-service';
+import { ChangePasswordRequestData, ChangeProfileRequestData, SigninRequestData, SignupRequestData } from '../../types';
+import { UserService } from '../../services/user-service';
+
+type FormFlow = 'signin' | 'signup' | 'changePassword' | 'changeData'
 
 export type FormComponentProps = {
 	fieldsetClass: string;
@@ -12,9 +17,10 @@ export type FormComponentProps = {
 	required?: boolean;
 	variant: 'profile' | 'normal'
 	onSubmit?: (event?: Event) => void;
+	flow?: FormFlow;
 } & Props;
 
-export class FormComponent extends Component {
+class FormComponent extends Component {
 	constructor(tagName: keyof HTMLElementTagNameMap | null, props: FormComponentProps) {
 		super(tagName, {
 			...props,
@@ -29,6 +35,7 @@ export class FormComponent extends Component {
 
 						inputs.forEach((input, index) => {
 							const { name, value } = input;
+
 							const errorTextComponent = document.getElementById(`error-text-placeholder-${index}`) as HTMLParagraphElement;
 							const errorTextNative = document.getElementById('error-text-native') as HTMLParagraphElement | undefined;
 
@@ -55,7 +62,26 @@ export class FormComponent extends Component {
 							}
 						});
 
-						return Object.keys(result).length ? console.log(result) : undefined;
+						if (!Object.keys(result).length) {
+							return;
+						}
+
+						switch (props.flow) {
+							case 'signup':
+								AuthService.signup(result as SignupRequestData);
+								break;
+							case 'signin':
+								AuthService.signin(result as SigninRequestData);
+								break;
+							case 'changeData':
+								UserService.changeProfileData(result as ChangeProfileRequestData);
+								break;
+							case 'changePassword':
+								UserService.changePassword(result as ChangePasswordRequestData);
+								break;
+							default:
+								return;
+						}
 					}
 				}
 			}
@@ -66,3 +92,5 @@ export class FormComponent extends Component {
 		return this.compile(template);
 	}
 }
+
+export default FormComponent;

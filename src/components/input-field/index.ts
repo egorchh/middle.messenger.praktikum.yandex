@@ -1,4 +1,7 @@
 import Component, { Props } from '../../core/component';
+import { connect } from '../../hocs/connect';
+import { InputComponentProps } from '../input';
+import { GlobalStateType, UserInfo } from '../../types';
 
 export type InputFieldComponentProps = {
     classNames?: Array<string | Record<string, boolean>>;
@@ -18,10 +21,10 @@ export type InputFieldComponentProps = {
     onInput?: (event?: Event) => void;
 } & Props;
 
-export class InputFieldComponent extends Component {
+class InputFieldComponent extends Component {
     constructor(tagName: keyof HTMLElementTagNameMap | null, props: InputFieldComponentProps) {
         const { attributes: { id, placeholder, type, name, value, accept } } = props;
-        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : []
+        const classNamesFromProps = props.classNames ? [ ...props.classNames ] : [];
 
         super(tagName, {
             classNames: classNamesFromProps.concat([ `${props.variant === 'profile' ? 'profile-' : ''}input-component_field` ]),
@@ -55,3 +58,17 @@ export class InputFieldComponent extends Component {
         return this.compile('', this._props);
     }
 }
+
+const mapStateToProps = (state: GlobalStateType, props: InputComponentProps) => {
+	return {
+		...props,
+		attributes: {
+			...props.attributes,
+			value: (state?.user && typeof state?.user[props.attributes?.name as keyof UserInfo] !== 'object') ? state?.user[props.attributes?.name as keyof UserInfo] : undefined
+		}
+	}
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default connect<InputComponentProps>(InputFieldComponent, mapStateToProps);
