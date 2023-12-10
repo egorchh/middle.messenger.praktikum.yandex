@@ -1,6 +1,6 @@
 import { ChangePasswordRequestData, ChangeProfileRequestData, Routes } from '../types';
 import store from '../core/store';
-import router from '../core/router';
+import { Router } from '../core/router';
 import userApi from '../api/user-api';
 import { AuthService } from './auth-service';
 
@@ -11,7 +11,7 @@ export class UserService {
 			store.set('user.error', false);
 			const response = await userApi.changeProfileData(data);
 			store.set('user', response);
-			router.go(Routes.Profile);
+			Router.getInstance().go(Routes.Profile);
 		} catch (error) {
 			store.set('user.error', error);
 		} finally {
@@ -24,7 +24,7 @@ export class UserService {
 			store.set('user.loading', true)
 			store.set('user.error', false);
 			await userApi.changeUserPassword(data);
-			router.go(Routes.Profile);
+			Router.getInstance().go(Routes.Profile);
 		} catch (error) {
 			store.set('user.error', error);
 		} finally {

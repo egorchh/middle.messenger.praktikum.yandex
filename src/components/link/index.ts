@@ -1,6 +1,6 @@
 import Component from '../../core/component';
 import { Routes } from '../../types';
-import router from '../../core/router';
+import { Router } from '../../core/router';
 
 export type LinkComponentProps = {
     linkText: string;
@@ -22,7 +22,7 @@ export class LinkComponent extends Component  {
             events: {
                 click: props?.onClick ? props?.onClick : (event?: Event) => {
 					event?.preventDefault();
-					router.go(props.path)
+					Router.getInstance().go(props.path)
 				}
             }
         })

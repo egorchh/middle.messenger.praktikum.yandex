@@ -2,7 +2,7 @@ import Component, { Props } from '../../../../core/component';
 import { template } from './template';
 import plusIcon from './assets/plus-icon.svg';
 import arrowIcon from './assets/arrow-right.svg';
-import router from '../../../../core/router';
+import { Router } from '../../../../core/router';
 import { Routes } from '../../../../types';
 import { PopupComponent, InputComponent, ButtonComponent } from '../../../../components';
 import renderDOM from '../../../../core/utilities/render';
@@ -58,7 +58,7 @@ const redirectIconButton = new ButtonComponent('button', {
     onClick: (event?: Event) => {
         event?.preventDefault();
 
-		router.go(Routes.Profile);
+		Router.getInstance().go(Routes.Profile);
     }
 })
 

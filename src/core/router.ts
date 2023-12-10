@@ -1,9 +1,9 @@
 import Component from './component';
 import Route from './route';
 
-class Router {
+export class Router {
 	protected routes: Route[] = [];
-	private static __instance: Router;
+	private static __instance: Router | null;
 	protected history: History = window.history;
 	private _currentRoute: Route | null = null;
 	private readonly _rootQuery: string = ''
@@ -19,6 +19,17 @@ class Router {
 		this._rootQuery = rootQuery;
 
 		Router.__instance = this;
+	}
+
+	static getInstance() {
+		if (!this.__instance) {
+			this.__instance = new Router('app');
+		}
+		return this.__instance;
+	}
+
+	static destroy() {
+		this.__instance = null;
 	}
 
 	public use(pathname: string, block: typeof Component) {
@@ -71,5 +82,3 @@ class Router {
 		return this.routes.find(route => route.match(pathname));
 	}
 }
-
-export default new Router('app');

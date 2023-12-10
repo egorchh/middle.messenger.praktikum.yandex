@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 import { template } from './template';
 import backIcon from './assets/back-icon.svg';
-import router from '../../core/router';
+import { Router } from '../../core/router';
 import { Routes } from '../../types';
 
 export class BackLinkComponent extends Component {
@@ -17,7 +17,7 @@ export class BackLinkComponent extends Component {
 					event?.preventDefault();
 
 					if (path) {
-						router.go(path);
+						Router.getInstance().go(path);
 					}
 				}
             }

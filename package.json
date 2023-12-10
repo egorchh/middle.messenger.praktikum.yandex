@@ -10,7 +10,7 @@
 		"preview": "vite preview",
 		"lint": "eslint src && stylelint 'src/**/*.{css,scss}' && tsc --noEmit",
 		"start": "npm run build && node server.js",
-		"test": "./node_modules/.bin/mocha"
+		"test": "mocha"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.3.11",
@@ -30,6 +30,8 @@
 		"sass": "^1.69.4",
 		"stylelint": "^15.11.0",
 		"stylelint-config-standard-scss": "^11.1.0",
+		"ts-node": "^10.9.2",
+		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.0.2",
 		"vite": "^4.4.5",
 		"vite-plugin-eslint": "^1.8.1"
