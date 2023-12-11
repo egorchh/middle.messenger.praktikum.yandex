@@ -4,7 +4,7 @@ import Route from './route';
 export class Router {
 	protected routes: Route[] = [];
 	private static __instance: Router | null;
-	protected history: History = window.history;
+	history: History = window.history;
 	private _currentRoute: Route | null = null;
 	private readonly _rootQuery: string = ''
 
@@ -38,16 +38,16 @@ export class Router {
 		return this;
 	}
 
-	public start() {
+	public start(testSessionStorage?: Storage) {
 		window.onpopstate = ((event: Event) => {
 			const target = event.currentTarget as Window;
 			this._onRoute(target.location.pathname);
 		});
 
-		this._onRoute(window.location.pathname);
+		this._onRoute(window.location.pathname, testSessionStorage);
 	}
 
-	private _onRoute(pathname: string) {
+	private _onRoute(pathname: string, testSessionStorage?: Storage) {
 		const route = this.getRoute(pathname);
 
 		if (!route) {
@@ -60,14 +60,18 @@ export class Router {
 
 		this._currentRoute = route;
 
-		sessionStorage.setItem('sessionRoute', window.location.pathname);
+		if (testSessionStorage) {
+			testSessionStorage.setItem('sessionRoute', window.location.pathname);
+		} else {
+			sessionStorage.setItem('sessionRoute', window.location.pathname);
+		}
 
 		route.render();
 	}
 
-	public go(pathname: string) {
+	public go(pathname: string, testSessionStorage?: Storage) {
 		this.history.pushState({}, '', pathname);
-		this._onRoute(pathname);
+		this._onRoute(pathname, testSessionStorage);
 	}
 
 	public back() {

@@ -19,11 +19,13 @@
 		"noFallthroughCasesInSwitch": true,
 		"types": ["vite/client", "mocha", "node"],
 		"allowSyntheticDefaultImports": true,
-		"noImplicitAny": true,
+		"noImplicitAny": true
 	},
 	"include": [
 		"src/**/*",
-		"src/**/*.spec.ts"
+		"src/**/*.spec.ts",
+		"global.d.ts",
+		"server.js"
 	],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", "dist/**/*"]
 }

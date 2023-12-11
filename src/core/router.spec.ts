@@ -1,30 +1,77 @@
+import sinon from 'sinon';
 import { JSDOM } from 'jsdom';
-import { afterEach, beforeEach } from 'mocha';
 import { expect } from 'chai';
+import Component from './component.ts';
 import { Router } from './router.ts';
-import { SignInPage, SignUpPage } from '../pages';
+
+const eventBusMock = {
+	subscribe: sinon.fake(),
+	emit: sinon.fake()
+};
 
 describe('Router', () => {
-	const HTML_MOCK = '<!DOCTYPE html><html lang="ru"><body><div id="app"></div></body></html>';
+	const ComponentMock = class {
+		getContent = sinon.fake.returns(document.createElement('template'));
 
-	beforeEach(() => {
-		const { window } = new JSDOM(HTML_MOCK, { url: 'https://localhost' });
-		global.document! = window.document;
-	});
+		dispatchComponentDidMount = sinon.fake.returns(eventBusMock.emit(Component.EVENTS.FLOW_CDM));
+	} as unknown as typeof Component;
+
+	const html = '<!DOCTYPE html><html><body><div id="app"></div></body></html>';
+	const { window: { sessionStorage } } = new JSDOM(html, { url: 'https://localhost' });
 
 	afterEach(() => {
 		Router.destroy();
-		window.history.replaceState({}, '', '/');
+	})
+
+	it('should return router instance by use()', () => {
+		const instance = Router.getInstance().use('/', ComponentMock);
+
+		expect(instance).to.eq(Router.getInstance());
 	});
 
-	it('should render content on a given route', () => {
-		Router.getInstance().use('/', SignInPage).use('/sign-up', SignUpPage);
-		Router.getInstance().start();
-		Router.getInstance().go('/sign-up');
-		const appElement = global.document.querySelector('#app');
-		const heading = appElement?.querySelector('h2');
-		expect(heading).not.to.be.a('null');
-		expect(heading!.textContent).to.equal('Регистрация аккаунта');
+	it('should render a page by start()', () => {
+		Router.getInstance()
+			.use('/', ComponentMock)
+			.start(sessionStorage);
+
+		expect(eventBusMock.emit.calledWith(Component.EVENTS.FLOW_CDM)).to.eq(true);
 	});
 
+	it('should redirect to /sign-in by go()', async () => {
+		Router.getInstance()
+			.use('/', ComponentMock)
+			.start(sessionStorage);
+		Router.getInstance().go('/sign-in', sessionStorage);
+
+		expect(global.window.location.pathname).to.eq('/sign-in');
+	});
+
+	it('should redirect to /chats from /sign-in by back()', async () => {
+		Router.getInstance()
+			.use('/', ComponentMock)
+			.start(sessionStorage);
+		Router.getInstance().go('/sign-in', sessionStorage);
+		Router.getInstance().go('/chats', sessionStorage);
+		Router.getInstance().back();
+
+		await new Promise<void>((resolve) => {
+			window.addEventListener('popstate', () => {
+				resolve();
+			});
+		});
+
+		expect(global.window.location.pathname).to.eq('/sign-in');
+	});
+
+	it('should redirect to /sign-in from /chats by back() and to /chats again by forward()', () => {
+		Router.getInstance()
+			.use('/', ComponentMock)
+			.start(sessionStorage);
+		Router.getInstance().go('/sign-in', sessionStorage);
+		Router.getInstance().go('/chats', sessionStorage);
+		Router.getInstance().back();
+		Router.getInstance().forward();
+
+		expect(global.window.location.pathname).to.eq('/chats');
+	});
 });

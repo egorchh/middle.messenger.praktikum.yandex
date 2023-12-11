@@ -3,35 +3,22 @@ type StringIndexed = Record<string, unknown>;
 export function queryString(data: StringIndexed): string | never {
 	if (typeof data !== 'object' || data === null) throw new Error('input must be an object');
 
-	let query = '';
+	const objectToQuery = (obj: StringIndexed): string => {
+		return Object.entries(obj)
+			.map(([ key, value ]) => {
+				if (Array.isArray(value)) {
+					return value
+						.map((item, index) => `${encodeURIComponent(key)}[${index}]=${encodeURIComponent(String(item))}`)
+						.join('&');
+				} else if (typeof value === 'object' && value !== null) {
+					return objectToQuery(value as StringIndexed).split('&').map(q => `${encodeURIComponent(key)}${q ? `.${q}` : ''}`);
+				} else {
+					return `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`;
+				}
+			})
+			.flat()
+			.join('&');
+	};
 
-	for (const key in data) {
-		if (Array.isArray(data[key])) {
-			const array = data[key] as Array<string | number>
-			array.forEach((item: string | number, index: number) => {
-				query += `${key}[${index}]=${item}&`;
-			});
-		} else if (typeof data[key] === 'object' && data[key] !== null) {
-			query += `${key}${recursiveObjIterator(data[key] as StringIndexed)}&`
-		} else {
-			query += `${key}=${data[key]}&`;
-		}
-	}
-
-	return query.slice(0, -1);
-}
-
-function recursiveObjIterator(obj: StringIndexed) {
-	let resultString = '';
-
-	for (const key in obj) {
-
-		if (typeof obj[key as keyof typeof obj] === 'object' && obj[key as keyof typeof obj] !== null) {
-			resultString += `[${key}]${recursiveObjIterator(obj[key] as StringIndexed)}`;
-		} else {
-			resultString += `[${key}]=${obj[key as keyof typeof obj]}`;
-		}
-	}
-
-	return resultString;
+	return objectToQuery(data);
 }
