@@ -19,6 +19,9 @@
 * Express Node.Js;
 * WebSocket
 * Vite;
+* Mocha
+* Chai
+* Husky (pre-commit)
 
 ### Как работать с проектом?
 
@@ -52,6 +55,12 @@
 
 ```bash
   npm run lint
+```
+
+Запуск тестов
+
+```bash
+  npm run test
 ```
 
 ### [Figma](https://www.figma.com/file/35AF4eQETx6H8n5unzQwDC/Дизайн-мессенджера?node-id=11%3A7331&mode=dev)

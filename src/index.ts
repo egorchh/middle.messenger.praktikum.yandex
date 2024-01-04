@@ -2,7 +2,7 @@
 import './styles/index.scss';
 
 // core
-import router from './core/router';
+import { Router } from './core/router';
 import store from './core/store';
 import { Routes } from './types';
 
@@ -22,13 +22,13 @@ import {
 } from './pages';
 
 window.addEventListener('popstate', () => {
-	router.start();
+	Router.getInstance().start();
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
 	store.removeState();
 
-	router
+	Router.getInstance()
 		.use(Routes.Error500, Error500Page)
 		.use(Routes.Error400, Error400Page)
 		.use(Routes.SignUp, SignUpPage)
@@ -51,15 +51,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 		const inAuthorized = Object.keys(userData).length && !Object.keys(userData).includes('reason');
 
 		if (inAuthorized) {
-			router.go(
+			Router.getInstance().go(
 				currentPath ||
 				Routes.Chat
 			);
 		} else {
-			router.go(Routes.SignIn);
+			Router.getInstance().go(Routes.SignIn);
 		}
 	} catch (error) {
 		console.log(error);
-		router.go(Routes.SignIn);
+		Router.getInstance().go(Routes.SignIn);
 	}
 });

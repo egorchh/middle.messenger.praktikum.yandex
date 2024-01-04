@@ -1,7 +1,7 @@
 import { Routes, SigninRequestData, SignupRequestData, UserInfo } from '../types';
 import authApi from '../api/auth-api';
 import store from '../core/store';
-import router from '../core/router';
+import { Router } from '../core/router';
 
 export class AuthService {
 	static async signin(data: SigninRequestData) {
@@ -10,7 +10,7 @@ export class AuthService {
 			store.set('user.loading', true);
 			await authApi.signin(data);
 			await this.fetchUser();
-			router.go(Routes.Chat);
+			Router.getInstance().go(Routes.Chat);
 		} catch (error) {
 			store.set('user.error', error);
 		} finally {
@@ -24,7 +24,7 @@ export class AuthService {
 			store.set('user.loading', true);
 			await authApi.signup(data);
 			await this.fetchUser();
-			router.go(Routes.Chat);
+			Router.getInstance().go(Routes.Chat);
 		} catch (error) {
 			store.set('user.error', error);
 		} finally {
@@ -37,7 +37,7 @@ export class AuthService {
 			store.set('user.error', false);
 			store.set('user.loading', true);
 			await authApi.logout();
-			router.go(Routes.SignIn);
+			Router.getInstance().go(Routes.SignIn);
 		} catch (error) {
 			store.set('user.error', error);
 		} finally {

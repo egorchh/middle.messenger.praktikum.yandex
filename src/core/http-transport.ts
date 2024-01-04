@@ -17,7 +17,7 @@ type OptionsType = {
 type HTTPMethod = (url: string, options?: OptionsType) => Promise<unknown>
 
 export default class HTTPTransport {
-	protected BASE_URL = 'https://ya-praktikum.tech/api/v2';
+	BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
 	protected path: string;
 
